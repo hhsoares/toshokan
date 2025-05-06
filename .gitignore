@@ -1,5 +1,8 @@
 # environment variables
 .env
 
+# python stuff
+__pycache__/
+
 # virtual environment
   venv/
