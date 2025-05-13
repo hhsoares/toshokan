@@ -1,26 +1,29 @@
-import os
 from flask import Flask
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
+import os
 
-load_dotenv()  # reads .env
-
+# load env and config
+load_dotenv()
 app = Flask(__name__)
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+
+# connect to Mongo
 mongo = PyMongo(app)
+app.mongo = mongo  # attach for access in blueprints
 
-# convenience handle
-db = mongo.db
-
+# health check
 @app.route("/health")
 def health():
-    # simple ping
     try:
-        db.command("ping")
+        mongo.db.command("ping")
         return {"status": "ok"}, 200
     except Exception as e:
         return {"status": "error", "msg": str(e)}, 500
 
+# import and register blueprints
+from routes.books import books_bp
+app.register_blueprint(books_bp, url_prefix="/api/books")
+
 if __name__ == "__main__":
     app.run(debug=True)
-
