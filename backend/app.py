@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 
@@ -7,6 +8,9 @@ import os
 load_dotenv()
 app = Flask(__name__)
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+
+# enable CORS (allow all origins for dev)
+CORS(app)  # You can restrict origins with: CORS(app, origins=["http://localhost:5173"])
 
 # connect to Mongo
 mongo = PyMongo(app)
@@ -24,8 +28,8 @@ def health():
 # import and register blueprints
 from routes.books import books_bp
 from routes.users import users_bp
-app.register_blueprint(books_bp, url_prefix="/api/books")
-app.register_blueprint(users_bp, url_prefix="/api/users")
+app.register_blueprint(books_bp, url_prefix="/books")
+app.register_blueprint(users_bp, url_prefix="/users")
 
 if __name__ == "__main__":
     app.run(debug=True)

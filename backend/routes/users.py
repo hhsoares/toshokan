@@ -15,12 +15,23 @@ def add_user():
     db = current_app.mongo.db
     data = request.get_json()
 
-    required_fields = {"name", "email"}
+    required_fields = {"first_name", "last_name", "email", "password", "confirm_password"}
     if not required_fields.issubset(data):
-        return {"error": "Missing name or email"}, 400
+        return {"error": "Missing required fields"}, 400
+
+    if data["password"] != data["confirm_password"]:
+        return {"error": "Passwords do not match"}, 400
 
     if db.users.find_one({"email": data["email"]}):
         return {"error": "Email already exists"}, 409
 
-    db.users.insert_one(data)
-    return {"message": "User added"}, 201
+    user_data = {
+        "first_name": data["first_name"],
+        "last_name": data["last_name"],
+        "email": data["email"],
+        "password": data["password"],  # You should hash this in production
+        "is_librarian": data.get("is_librarian", False)
+    }
+
+    db.users.insert_one(user_data)
+    return {"message": "User registered successfully"}, 201
