@@ -23,7 +23,9 @@ def health():
 
 # import and register blueprints
 from routes.books import books_bp
+from routes.users import users_bp
 app.register_blueprint(books_bp, url_prefix="/api/books")
+app.register_blueprint(users_bp, url_prefix="/api/users")
 
 if __name__ == "__main__":
     app.run(debug=True)
