@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <header>
+  <div class="header-left">toshokan 図書館</div>
+  <div class="header-right"><a href="#">return</a></div>
+</header>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,41 +14,47 @@
 
     <title>Login</title>
 </head>
-
 <body>
     <div class="container">
         <div class="register-link">
             <h1>welcome!</h1>
             <p>don't have an account?<a href="#"> register here!</a></p>
         </div>
+        <div class="wrapper">
+            <form action="">
+                <h1>login</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="e-mail" required>
+                </div>
+
+                <div class="input-box">
+                    <input type="password" placeholder="password" required>
+                </div>
+
+                <div class="remember-forgot">
+                    <label><input type="checkbox">remember me</label>
+                    <a href="#">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn">sign in</button>
+                <div class="loginWith">
+                    <p>or sign in with:</p>
+                    <i class='bx bxl-facebook-circle'></i>
+                    <i class='bx bxl-apple'></i>
+                    <i class='bx bxl-google'></i>
+                </div>
+
+            </form>
+        </div>
     </div>
 
-    <div class="wrapper">
-        <form action="">
-            <h1>login</h1>
-            <div class="input-box">
-                <input type="text" placeholder="e-mail" required>
-            </div>
+   
 
-            <div class="input-box">
-                <input type="password" placeholder="password" required>
-            </div>
-
-            <div class="remember-forgot">
-                <label><input type="checkbox">remember me</label>
-                <a href="#">Forgot password?</a>
-            </div>
-
-            <button type="submit" class="btn">sign in</button>
-            <div class="loginWith">
-                <p>or sign in with:</p>
-                <i class='bx bxl-facebook-circle'></i>
-                <i class='bx bxl-apple'></i>
-                <i class='bx bxl-google'></i>
-            </div>
-
-        </form>
-    </div>
 </body>
 
+
+ <footer>
+  <div class="footer-left">Toshokan - 2025</div>
+  <div class="footer-right">Feito por Guilherme Pereira e Hugo Soares</div>
+</footer>
 </html>

@@ -5,6 +5,10 @@
     font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
 }
 
+.header-left, .footer-left {
+  padding-left: 40px; /* or whatever you need */
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -17,6 +21,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 346px;
 }
 
 .wrapper {
@@ -26,7 +31,6 @@ body {
     background: #231F12;
     color: #FFE5BA;
     border-radius: 16px;
-    margin-right: 100px;
     padding: 30px 40px;
 }
 
@@ -115,7 +119,6 @@ body {
 .register-link {
     color: #231F12;
     font-size: 18px;
-    margin-right: 400px;
 }
 
 .register-link h1 {
