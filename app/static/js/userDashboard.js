@@ -7,6 +7,7 @@ window.addEventListener("storage", (event) => {
 const { createApp } = Vue;
 
 createApp({
+  delimiters: ["[[", "]]"],
   data() {
     return {
       user: null
@@ -15,7 +16,7 @@ createApp({
   methods: {
     logout() {
       localStorage.removeItem("user");
-      window.location.href = "../home/loginScreen.html";
+      window.location.href = "/";
     }
   },
   mounted() {
@@ -23,7 +24,7 @@ createApp({
     console.log("storedUser:", storedUser);
 
     if (!storedUser) {
-      window.location.href = "../home/loginScreen.html";
+      window.location.href = "/";
     } else {
       this.user = JSON.parse(storedUser);
     }

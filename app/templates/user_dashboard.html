@@ -9,7 +9,7 @@
 <body>
   <div id="app">
     <h1>Welcome to the Dashboard</h1>
-    <p v-if="user">Hello, {{ user.first_name }} {{ user.last_name }}!</p>
+    <p v-if="user">Hello, [[ user.first_name ]] [[ user.last_name ]]!</p>
     <p v-else>Redirecting to login...</p>
     <button @click="logout">Logout</button>
   </div>
