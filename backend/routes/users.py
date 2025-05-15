@@ -35,3 +35,25 @@ def add_user():
 
     db.users.insert_one(user_data)
     return {"message": "User registered successfully"}, 201
+
+@users_bp.route("/login", methods=["POST"])
+def login_user():
+    db = current_app.mongo.db
+    data = request.get_json()
+
+    if "email" not in data or "password" not in data:
+        return {"error": "Missing email or password"}, 400
+
+    user = db.users.find_one({"email": data["email"]})
+
+    if not user or user["password"] != data["password"]:
+        return {"error": "Invalid email or password"}, 401
+
+    user_info = {
+        "first_name": user["first_name"],
+        "last_name": user["last_name"],
+        "email": user["email"],
+        "is_librarian": user.get("is_librarian", False)
+    }
+
+    return {"message": "Login successful", "user": user_info}, 200
