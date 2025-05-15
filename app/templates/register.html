@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
-  <link rel="stylesheet" type="text/css" href="registerStyle.css">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/registerStyle.css') }}">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
@@ -48,20 +48,18 @@
         </div>
 
         <button type="submit" class="btn">submit</button>
-
       </form>
     </div>
   </div>
 
   <footer>
-    <a href="loginScreen.html">return</a>
+    <a href="{{ url_for('login') }}">return</a>
     <p>Toshokan - 2025</p>
     <p>Feito por Guilherme Pereira e Hugo Soares</p>
   </footer>
 
-  <!-- Load Vue first, then your script -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-  <script src="register.js"></script>
+  <script src="{{ url_for('static', filename='js/register.js') }}"></script>
 </body>
-
 </html>
+

@@ -31,7 +31,7 @@ createApp({
         } else {
           localStorage.setItem("user", JSON.stringify(data.user));
           setTimeout(() => {
-            window.location.href = "../user/userDashboard.html";
+            window.location.href = "/dashboard";
           }, 100);
         }
       } catch (err) {
