@@ -31,7 +31,11 @@ createApp({
         } else {
           localStorage.setItem("user", JSON.stringify(data.user));
           setTimeout(() => {
-            window.location.href = "/dashboard";
+            if (data.user.is_librarian) {
+              window.location.href = "/librarian-dashboard";
+            } else {
+              window.location.href = "/dashboard";
+            }
           }, 100);
         }
       } catch (err) {

@@ -36,6 +36,10 @@ def forgot_password():
 def dashboard():
     return render_template("user_dashboard.html")
 
+@app.route("/librarian-dashboard")
+def librarian_dashboard():
+    return render_template("lib_dashboard.html")
+
 @app.route("/health")
 def health():
     try:
