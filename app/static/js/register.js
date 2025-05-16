@@ -47,7 +47,7 @@ createApp({
           alert(`Error: ${data.error || "Unknown error"}`);
         } else {
           alert(data.message || "User registered successfully!");
-          window.location.href = 'loginScreen.html';
+          window.location.href = '/';
         }
       } catch (err) {
         alert('Server error. Please try again later.');
