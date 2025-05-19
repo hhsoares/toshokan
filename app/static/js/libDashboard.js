@@ -20,7 +20,10 @@ createApp({
     }
   },
   mounted() {
-    const storedUser = localStorage.getItem("user");
+    let storedUser = localStorage.getItem("user");
+    if (!storedUser) {
+      storedUser = sessionStorage.getItem("user");
+    }
     console.log("storedUser:", storedUser);
 
     if (!storedUser) {

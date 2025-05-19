@@ -29,7 +29,8 @@ createApp({
         if (!response.ok) {
           alert(`Error: ${data.error}`);
         } else {
-          localStorage.setItem("user", JSON.stringify(data.user));
+          const storage = this.remember ? localStorage : sessionStorage;
+          storage.setItem("user", JSON.stringify(data.user));
           setTimeout(() => {
             if (data.user.is_librarian) {
               window.location.href = "/librarian-dashboard";
