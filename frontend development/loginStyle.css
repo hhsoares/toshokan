@@ -5,66 +5,80 @@
     font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
 }
 
-.header-left, .footer-left {
-  padding-left: 40px; /* or whatever you need */
-}
-
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     min-height: 100vh;
     background: #ffe5ba;
+    font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
+}
+
+header {
+  background-color: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*padding: 12px 40px;*/
+  width: 100%;
+  height: 5vh;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #231F12;
+}
+
+.logo {
+    margin-left: 11.5vw;
+}
+
+.return {
+    margin-right: 11.5vw;
 }
 
 .container {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 346px;
+    gap: 18vw;
+    padding: 2vh 1vw;
 }
 
 .wrapper {
-
-    width: 504px;
-    height: 492px;
+    width: 26vw;
+    max-width: 504px;
+    min-width: 300px;
+    height: auto;
     background: #231F12;
     color: #FFE5BA;
     border-radius: 16px;
-    padding: 30px 40px;
+    padding: 2vw 2.5vw;
 }
 
 
 .wrapper h1 {
-
-    font-size: 40px;
+   font-size: 2.5rem;
     text-align: left;
-    /*padding-left: 30px;
-    padding-top: 30px;*/
 }
 
 .wrapper .input-box {
 
     width: 100%;
-    height: 50px;
-    margin: 30px 0;
-    /*padding-left: 30px; */
-
-
+    height: 3.125rem;  /* ~50px */
+    margin: 1.875 0;  /* ~30px */
 }
 
 .input-box input {
 
-    width: 408px;
-    height: 48px;
+     width: 100%; /* Full width of parent, removes 408px */
+    height: 3rem; /* ~48px */
     background: #D5BC90;
     border: none;
     outline: none;
     border: 2px solid #D5BC90;
     border-radius: 16px;
-    font-size: 16px;
+    font-size: 1rem; /* ~16px */
     color: #231F12;
-    padding: 20px 45px 20px 20px;
+    padding: 1.25rem 2.8rem 1.25rem 1.25rem; /* ~20px 45px 20px 20px */
 }
 
 .input-box input::placeholder {
@@ -75,24 +89,22 @@ body {
 
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
-    margin: -15px 0 15px;
-    padding-left: 8px;
-    padding-top: 10px;
+    font-size: 0.875rem; /* ~14px */
+    margin: -0.9375rem 0 0.9375rem; /* ~ -15px 0 15px */
+    padding-left: 0.5rem; /* ~8px */
+    padding-top: 0.625rem; /* ~10px */
 }
 
 .remember-forgot label input {
     accent-color: #D5BC90;
-    margin-right: 3px;
-
+    margin-right: 0.1875rem; /* ~3px */
 }
 
 .remember-forgot a {
 
     color: #D5BC90;
     text-decoration: none;
-    padding-right: 8px;
-
+    padding-right: 0.5rem; /* ~8px */
 }
 
 .remember-forgot a:hover {
@@ -100,29 +112,28 @@ body {
 }
 
 .wrapper .btn {
-    width: 172px;
-    height: 40px;
+    width: 10rem; /* ~172px */
+    height: 2.5rem; /* ~40px */
     background: #FFE5BA;
     border: none;
     outline: none;
     border-radius: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
-    font-size: 28px;
+    font-size: 1.75rem; /* ~28px */
     color: #333;
     font-weight: 600;
     display: block;
     margin: 0 auto;
-
 }
 
 .register-link {
     color: #231F12;
-    font-size: 18px;
+    font-size: 1.125rem; /* ~18px */
 }
 
 .register-link h1 {
-    font-size: 64px;
+    font-size: 4rem; /* ~64px */
     color: #231F12;
 }
 
@@ -141,4 +152,12 @@ body {
     font-size: 14px;
     text-align: center;
     padding-top: 20px;
+}
+
+footer {
+  text-align: center;
+  background: #D5BC90;
+  color: #231F12;
+  padding: 10px;
+  font-size: 14px;
 }
