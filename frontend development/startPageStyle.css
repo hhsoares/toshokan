@@ -95,7 +95,7 @@ header {
 
 .image-wrapper {
   width: 45vw;
-  height: auto;
+  height: 100%;
   max-width: 1247px;
 }
 
