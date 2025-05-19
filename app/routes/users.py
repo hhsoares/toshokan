@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify, current_app, session
 
 users_bp = Blueprint("users", __name__)
 
@@ -38,6 +38,7 @@ def add_user():
 
 @users_bp.route("/login", methods=["POST"])
 def login_user():
+    session.clear()
     db = current_app.mongo.db
     data = request.get_json()
 
@@ -55,5 +56,7 @@ def login_user():
         "email": user["email"],
         "is_librarian": user.get("is_librarian", False)
     }
+
+    session["user"] = user_info
 
     return {"message": "Login successful", "user": user_info}, 200

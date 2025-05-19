@@ -13,7 +13,10 @@
     <p v-else>Redirecting to login...</p>
     <button @click="logout">Logout</button>
   </div>
-
+  <script>
+    const userFromServer = {{ user | tojson }};
+    localStorage.setItem("user", JSON.stringify(userFromServer));
+  </script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="{{ url_for('static', filename='js/userDashboard.js') }}"></script>
 </body>

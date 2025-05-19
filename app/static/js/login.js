@@ -1,4 +1,8 @@
 // login.js
+
+// Clear any stale session
+fetch("/logout", { method: "POST" });
+
 const { createApp } = Vue;
 
 createApp({

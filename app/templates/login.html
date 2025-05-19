@@ -39,7 +39,9 @@
 
         <div class="loginWith">
           <p>or sign in with:</p>
-          <i class='bx bxl-google'></i>
+          <a href="{{ url_for('google_login') }}">
+            <i class='bx bxl-google'></i>
+          </a>
         </div>
       </form>
     </div>

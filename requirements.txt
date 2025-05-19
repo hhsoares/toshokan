@@ -3,3 +3,5 @@ python-dotenv
 Flask-PyMongo
 python-dotenv
 flask-cors
+authlib
+requests
