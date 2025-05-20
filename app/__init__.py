@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, session, render_template
+from flask import Flask, redirect, url_for, session, render_template, request
 from authlib.integrations.flask_client import OAuth
 from flask_pymongo import PyMongo
 from flask_cors import CORS
@@ -107,6 +107,14 @@ def google_callback():
 def logout():
     session.clear()
     return "", 204
+
+@app.route("/search")
+def search_page():
+    user = session.get("user")
+    if not user:
+        return redirect(url_for("login"))
+    query = request.args.get("q", "")
+    return render_template("search_results.html", user=user, initial_query=query)
 
 from app.routes.books import books_bp
 from app.routes.users import users_bp

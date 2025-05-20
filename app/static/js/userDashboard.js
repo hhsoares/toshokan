@@ -10,13 +10,19 @@ createApp({
   delimiters: ["[[", "]]"],
   data() {
     return {
-      user: null
+      user: null,
+      searchQuery: ""
     };
   },
   methods: {
     logout() {
       localStorage.removeItem("user");
       window.location.href = "/";
+    },
+    goToSearch() {
+      if (this.searchQuery.trim()) {
+        window.location.href = `/search?q=${encodeURIComponent(this.searchQuery.trim())}`;
+      }
     }
   },
   mounted() {

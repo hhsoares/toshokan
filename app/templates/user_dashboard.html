@@ -1,24 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/userDashboard.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
   <div id="app">
-    <h1>Welcome to the Dashboard</h1>
-    <p v-if="user">Hello, [[ user.first_name ]] [[ user.last_name ]]!</p>
+    <header>
+      <div class="logo">toshokan 図書館</div>
+      <div class="search-container">
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="search for books, authors, ISBNs"
+          @keyup.enter="goToSearch($event)"
+        />
+      </div>
+      <div class="user-info" v-if="user">
+        <span>welcome <strong>[[ user.first_name ]]</strong>!</span>
+        <a href="#" @click.prevent="logout">logout</a>
+      </div>
+    </header>
+
+    <main v-if="user">
+      <section class="section">
+        <h2>your current books</h2>
+        <div class="book-row">
+          <!-- Example book placeholders -->
+          <div class="book" v-for="book in currentBooks" :key="book.isbn13">
+            <div class="cover-placeholder"></div>
+            <p class="expire">expires:<br />[[ book.expiry ]]</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>you may be interested</h2>
+        <div class="book-row">
+          <div class="book" v-for="book in recommendedBooks" :key="book.isbn13">
+            <div class="cover-placeholder"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <p v-else>Redirecting to login...</p>
-    <button @click="logout">Logout</button>
   </div>
+
   <script>
     const userFromServer = {{ user | tojson }};
     localStorage.setItem("user", JSON.stringify(userFromServer));
   </script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-  <script src="{{ url_for('static', filename='js/userDashboard.js') }}"></script>
-</body>
-</html>
 
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      delimiters: ["[[", "]]"],
+      data() {
+        return {
+          user: null,
+          searchQuery: "",
+          currentBooks: [
+            // Example data; you can fetch this from API dynamically
+            { isbn13: "9780261102217", expiry: "04/25/2025" },
+            { isbn13: "9780261102218", expiry: "04/28/2025" },
+          ],
+          recommendedBooks: [
+            // Example placeholders
+            { isbn13: "9780261102219" },
+            { isbn13: "9780261102220" },
+            { isbn13: "9780261102221" },
+            { isbn13: "9780261102222" },
+            { isbn13: "9780261102223" },
+            { isbn13: "9780261102224" },
+          ],
+        };
+      },
+      methods: {
+        logout() {
+          localStorage.removeItem("user");
+          window.location.href = "/";
+        },
+        goToSearch() {
+          if (this.searchQuery.trim()) {
+            window.location.href = `/search?q=${encodeURIComponent(this.searchQuery.trim())}`;
+          }
+        }
+      },
+      mounted() {
+        let storedUser = localStorage.getItem("user");
+        if (!storedUser) {
+          storedUser = sessionStorage.getItem("user");
+        }
+
+        if (!storedUser) {
+          window.location.href = "/";
+        } else {
+          this.user = JSON.parse(storedUser);
+        }
+      },
+    }).mount("#app");
+  </script>
+</body>
+
+</html>

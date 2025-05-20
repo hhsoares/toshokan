@@ -5,7 +5,21 @@ books_bp = Blueprint("books", __name__)
 @books_bp.route("/", methods=["GET"])
 def get_books():
     db = current_app.mongo.db
-    books = list(db.books.find())
+    search_query = request.args.get("q", "")  # Get 'q' query parameter for search
+
+    if search_query:
+        # Search by name, author or isbn13 (case-insensitive)
+        regex_query = {"$regex": search_query, "$options": "i"}
+        books = list(db.books.find({
+            "$or": [
+                {"name": regex_query},
+                {"author": regex_query},
+                {"isbn13": regex_query}
+            ]
+        }))
+    else:
+        books = list(db.books.find())
+
     for book in books:
         book["_id"] = str(book["_id"])
     return jsonify(books)

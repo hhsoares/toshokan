@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/searchResults.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <div class="logo">toshokan 図書館</div>
+      <div class="search-container">
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="search for books, authors, ISBNs"
+          @keyup.enter="searchBooks"
+        />
+        <button @click="searchBooks">🔍</button>
+      </div>
+      <div class="user-info">
+        <span>welcome <strong>[[ user.first_name ]]</strong>!</span>
+        <a href="#" @click.prevent="logout">logout</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="results-header" v-if="books.length > 0">
+        <p>
+          <strong>[[ startResult ]] - [[ endResult ]]</strong> of over
+          <strong>[[ totalResults ]]</strong> results for
+          "<strong>[[ searchQuery ]]</strong>"
+        </p>
+        <a href="#" class="sort-link" @click.prevent="toggleSort">
+          sort by: <strong>[[ sortOrder ]]</strong>
+        </a>
+      </div>
+
+      <div class="book-grid">
+        <div
+          class="book"
+          v-for="book in paginatedBooks"
+          :key="book.isbn13"
+          @click="openModal(book)"
+        >
+          <div
+            class="cover-placeholder"
+            :style="{ backgroundImage: 'url(' + book.image + ')' }"
+          ></div>
+          <p class="title">[[ book.name ]]</p>
+          <p class="author">[[ book.author ]]</p>
+        </div>
+      </div>
+
+      <div class="pagination" v-if="totalPages > 1">
+        <span
+          @click="changePage(currentPage - 1)"
+          :class="{ disabled: currentPage === 1 }"
+          >&laquo;</span
+        >
+        <span
+          v-for="page in pageNumbers"
+          :key="page"
+          @click="changePage(page)"
+          :class="{ active: currentPage === page }"
+          >[[ page ]]</span
+        >
+        <span
+          @click="changePage(currentPage + 1)"
+          :class="{ disabled: currentPage === totalPages }"
+          >&raquo;</span
+        >
+      </div>
+    </main>
+
+    <!-- Book Details Modal -->
+    <div id="bookModal" class="modal" v-if="showModal">
+      <div class="modal-content">
+        <span class="close-btn" @click="closeModal">&times;</span>
+        <div class="modal-body">
+          <div
+            class="modal-cover"
+            :style="{ backgroundImage: 'url(' + selectedBook.image + ')' }"
+          ></div>
+          <div class="modal-info">
+            <h2>[[ selectedBook.name ]]</h2>
+            <p>[[ selectedBook.author ]]</p>
+            <hr />
+            <p><strong>Title:</strong> [[ selectedBook.name ]]</p>
+            <p><strong>Author:</strong> [[ selectedBook.author ]]</p>
+            <p><strong>ISBN-13:</strong> [[ selectedBook.isbn13 ]]</p>
+            <button class="reserve-btn" @click="reserveBook(selectedBook)">
+              reserve
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inject initial search query from Flask -->
+  <script>
+    window.initialQuery = {{ initial_query | tojson | safe }};
+    window.initialUser = {{ user | tojson | safe }};
+  </script>
+
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <!-- External JS -->
+  <script src="{{ url_for('static', filename='js/searchResults.js') }}"></script>
+</body>
+
+</html>
