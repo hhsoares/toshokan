@@ -85,31 +85,47 @@ main {
 
 .book-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 24px;
 }
 
 .book {
-  text-align: center;
+  text-align: center;       /* Center text */
+  cursor: pointer;          /* Indicate clickable */
+}
+
+.book:hover {
+  transform: scale(1.03);  /* Slight zoom effect on hover */
+}
+
+.book:hover .cover-placeholder {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .cover-placeholder {
-  width: 120px;
-  height: 180px;
+  width: 230px;
+  height: 350px;
   background-color: #DDD;
-  border-radius: 8px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-  margin: 0 auto 10px auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  margin: 0 auto 12px auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: box-shadow 0.3s ease;
 }
 
 .title {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;          /* Slightly bigger for readability */
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #231F12;
 }
 
 .author {
-  font-size: 13px;
-  color: #444;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
 }
 
 .pagination {
