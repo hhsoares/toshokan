@@ -1,0 +1,216 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #FFFFFF;
+  color: #231F12;
+}
+
+header {
+  background-color: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.search-container {
+  flex: 1;
+  max-width: 500px;
+  margin: 0 40px;
+  display: flex;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-container button {
+  padding: 8px 12px;
+  border: none;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+
+.user-info {
+  font-size: 14px;
+}
+
+.user-info a {
+  margin-left: 8px;
+  text-decoration: none;
+  color: #231F12;
+}
+
+.user-info a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 40px;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.sort-link {
+  font-size: 14px;
+  text-decoration: none;
+  color: #231F12;
+}
+
+.sort-link:hover {
+  text-decoration: underline;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 24px;
+}
+
+.book {
+  text-align: center;
+}
+
+.cover-placeholder {
+  width: 120px;
+  height: 180px;
+  background-color: #DDD;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  margin: 0 auto 10px auto;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.author {
+  font-size: 13px;
+  color: #444;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #231F12;
+}
+
+.pagination span {
+  cursor: pointer;
+}
+
+.pagination span:hover {
+  text-decoration: underline;
+}
+
+/* Modal Overlay */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Box */
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 16px;
+  width: 70%;
+  max-width: 800px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+/* Modal Layout */
+.modal-body {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Placeholder Cover */
+.modal-cover {
+  width: 180px;
+  height: 260px;
+  background-color: #DDD;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Info Text */
+.modal-info h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.modal-info p {
+  margin: 8px 0;
+}
+
+.modal-info hr {
+  margin: 16px 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+.reserve-btn {
+  margin-top: 20px;
+  background: #FFE5BA;
+  color: #231F12;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.reserve-btn:hover {
+  background-color: #f4d88e;
+}

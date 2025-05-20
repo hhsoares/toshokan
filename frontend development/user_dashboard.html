@@ -1,20 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>User Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="userDashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div id="app">
-    <h1>Welcome to the Dashboard</h1>
-    <p v-if="user">Hello, [[ user.first_name ]] [[ user.last_name ]]!</p>
-    <p v-else>Redirecting to login...</p>
-    <button @click="logout">Logout</button>
-  </div>
+  <header>
+    <div class="logo">toshokan 図書館</div>
+    <div class="search-container">
+      <input type="text" placeholder="search for books, authors, ISBNs">
+      <button>🔍</button>
+    </div>
+    <div class="user-info">
+      <span>welcome <strong>Hugo</strong>!</span>
+      <a href="loginScreen.html">logout</a>
+    </div>
+  </header>
 
-  <!-- Load Vue and dashboard logic -->
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <main>
+    <section class="section">
+      <h2>your current books</h2>
+      <div class="book-row">
+        <div class="book">
+          <div class="cover-placeholder"></div>
+          <p class="expire">expires:<br>04/25/2025</p>
+        </div>
+        <div class="book">
+          <div class="cover-placeholder"></div>
+          <p class="expire">expires:<br>04/28/2025</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>you may be interested</h2>
+      <div class="book-row">
+        <div class="book"><div class="cover-placeholder"></div></div>
+        <div class="book"><div class="cover-placeholder"></div></div>
+        <div class="book"><div class="cover-placeholder"></div></div>
+        <div class="book"><div class="cover-placeholder"></div></div>
+        <div class="book"><div class="cover-placeholder"></div></div>
+        <div class="book"><div class="cover-placeholder"></div></div>
+      </div>
+    </section>
+  </main>
 </body>
+
 </html>
