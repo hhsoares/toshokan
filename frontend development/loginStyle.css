@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background: #ffe5ba;
-    font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
+    justify-content: space-between;
 }
 
 header {
@@ -29,6 +29,8 @@ header {
 }
 
 .return {
+    color: #231F12;
+    text-decoration: none;
     margin-right: 11.5vw;
 }
 
@@ -38,63 +40,56 @@ header {
 }
 
 .container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 18vw;
-    padding: 2vh 1vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 40px 80px;
 }
 
 .wrapper {
-    width: 504px;
-    height: 492px;
-    background: #231F12;
-    color: #FFE5BA;
-    border-radius: 16px;
-    padding: 2vw 2.5vw;
+  width: 400px;
+  background: #231F12;
+  color: #FFE5BA;
+  border-radius: 16px;
+  padding: 30px 40px;
 }
 
 
 .wrapper h1 {
-   font-size: 2.5rem;
-    text-align: left;
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
-.wrapper .input-box {
-
-    width: 408px;
-    height: 48px;
-    margin: 28px;
-    padding: 0px 48px 0px 48px;
+.input-box {
+  width: 100%;
+  margin: 10px 0 20px;
 }
 
 .input-box input {
-
-    width: 100%; /* Full width of parent, removes 408px */
-    height: 3rem; /* ~48px */
-    background: #D5BC90;
-    border: none;
-    outline: none;
-    border: 2px solid #D5BC90;
-    border-radius: 16px;
-    font-size: 1rem; /* ~16px */
-    color: #231F12;
-    padding: 1.25rem 2.8rem 1.25rem 1.25rem; /* ~20px 45px 20px 20px */
+  width: 100%;
+  height: 48px;
+  background: #D5BC90;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  padding: 0 20px;
+  color: #231F12;
 }
 
 .input-box input::placeholder {
-    color: #231F12;
+color: #231F12;
 }
 
-.wrapper .remember-forgot {
-
-    display: flex;
+.wrapper label {
+  font-size: 14px;
+  color: #D5BC90;
+    /*display: flex;
     justify-content: space-between;
-    font-size: 0.875rem; /* ~14px */
-    margin: -0.9375rem 0 0.9375rem; /* ~ -15px 0 15px */
-    padding-left: 0.5rem; /* ~8px */
-    padding-top: 0.625rem; /* ~10px */
+    font-size: 0.875rem; 
+    margin: -0.9375rem 0 0.9375rem;
+    padding-left: 0.5rem;
+    padding-top: 0.625rem;*/
 }
 
 .remember-forgot label input {
@@ -130,22 +125,28 @@ header {
 }
 
 .register-link {
-    color: #231F12;
-    font-size: 1.125rem; /* ~18px */
+  flex: 1;
+  color: #231F12;
+  font-size: 18px;
+  max-width: 500px;
 }
 
 .register-link h1 {
-    font-size: 4rem; /* ~64px */
-    color: #231F12;
+  font-size: 48px;
+  margin-bottom: 12px;
 }
 
-.register-link p a {
+.register-link p {
+    font-size: 16px;
+}
+
+.register-link a {
     color: #000000;
     text-decoration: none;
     font-weight: 600;
 }
 
-.register-link p a:hover {
+.register-link a:hover {
     text-decoration: underline;
 }
 
