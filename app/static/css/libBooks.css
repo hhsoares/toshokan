@@ -1,0 +1,111 @@
+/* === HEADER & NAVIGATION === */
+
+header {
+  background-color: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #231F12;
+  gap: 20px;
+}
+
+.logo {
+  flex: 1;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+  max-width: 400px;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px 0 0 20px;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-wrapper button {
+  padding: 8px 12px;
+  background-color: white;
+  border: none;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Navigation under header */
+.secondary-nav {
+  background-color: #FFE5BA;
+  display: flex;
+  gap: 32px;
+  padding: 10px 40px;
+  font-size: 14px;
+}
+
+.secondary-nav a {
+  color: #231F12;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.secondary-nav a.active {
+  text-decoration: underline;
+}
+
+.secondary-nav a:hover {
+  text-decoration: underline;
+}
+
+/* === TABLE STYLING === */
+
+.books-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 40px 40px;
+  font-size: 14px;
+  color: #231F12;
+}
+
+.books-table th,
+.books-table td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.books-table th {
+  background: white;
+  font-weight: bold;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sort-arrow {
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+
+/* Status dot (all active for now) */
+.status-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.status-dot.active {
+  background: #D5BC90;
+}

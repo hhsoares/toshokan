@@ -2,20 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>User Dashboard</title>
+  <title>Librarian Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Top bar styling -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/userDashboard.css') }}">
+
+  <!-- Secondary nav styling -->
+  <style>
+    .secondary-nav {
+      background-color: #FFE5BA;
+      display: flex;
+      gap: 24px;
+      padding: 8px 40px;
+    }
+    .secondary-nav a {
+      color: #231F12;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .secondary-nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
-    <h1>Welcome to the Librarian</h1>
-    <p v-if="user">Hello, [[ user.first_name ]] [[ user.last_name ]]!</p>
-    <p v-else>Redirecting to login...</p>
-    <button @click="logout">Logout</button>
+    <!-- Top header -->
+    <header>
+      <div class="logo">toshokan 図書館</div>
+      <div v-if="user" class="user-info">
+        welcome [[ user.first_name ]]! | <a href="#" @click.prevent="logout">logout</a>
+      </div>
+      <div v-else class="user-info">
+        Redirecting to login...
+      </div>
+    </header>
+
+    <!-- Secondary navigation -->
+    <nav class="secondary-nav">
+      <a href="/librarian/users">users</a>
+      <a href="/librarian/books">books</a>
+      <a href="/requests">requests</a>
+    </nav>
+
+    <!-- (Optional) your librarian page content goes here -->
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <!-- keep whatever script you use to mount #app -->
   <script src="{{ url_for('static', filename='js/userDashboard.js') }}"></script>
 </body>
 </html>
-

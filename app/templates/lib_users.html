@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Users – Toshokan 図書館</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/userDashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libUsers.css') }}">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header>
+      <div class="logo">toshokan 図書館</div>
+      <div class="search-wrapper">
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="search for users"
+          @keyup.enter="loadUsers"
+        />
+        <button @click="loadUsers">🔍</button>
+      </div>
+      <div class="user-info">
+        welcome <strong>[[ user.first_name ]]</strong>! |
+        <a href="#" @click.prevent="logout">logout</a>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="secondary-nav">
+      <a href="/librarian/users" class="active">users</a>
+      <a href="/librarian/books">books</a>
+      <a href="/librarian/requests">requests</a>
+    </nav>
+
+    <!-- Users table -->
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th># <span @click="toggleSort('index')" class="sort-arrow">[[ arrow('index') ]]</span></th>
+          <th @click="toggleSort('name')" class="sortable">
+            name <span class="sort-arrow">[[ arrow('name') ]]</span>
+          </th>
+          <th @click="toggleSort('email')" class="sortable">
+            e-mail <span class="sort-arrow">[[ arrow('email') ]]</span>
+          </th>
+          <th @click="toggleSort('status')" class="sortable">
+            status <span class="sort-arrow">[[ arrow('status') ]]</span>
+          </th>
+          <th>active books</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(u, idx) in filteredUsers" :key="u._id">
+          <td><span :class="['status-dot', u.status]"></span></td>
+          <td>[[ idx + 1 ]]</td>
+          <td>[[ u.first_name ]] [[ u.last_name ]]</td>
+          <td>[[ u.email ]]</td>
+          <td>[[ u.status ]]</td>
+          <td>
+            <div v-if="u.active_books.length">
+              <div v-for="b in u.active_books">
+                [[ b.name ]] (due: [[ b.due ]])
+              </div>
+            </div>
+            <div v-else>--</div>
+          </td>
+          <td>
+            <button @click="deleteUser(u)">
+              <i class='bx bx-no-entry'></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="{{ url_for('static', filename='js/libUsers.js') }}"></script>
+</body>
+</html>

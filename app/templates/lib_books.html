@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Books – Toshokan 図書館</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/userDashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libBooks.css') }}">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header>
+      <div class="logo">toshokan 図書館</div>
+      <div class="search-wrapper">
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="search for books"
+          @keyup.enter="loadBooks"
+        />
+        <button @click="loadBooks">🔍</button>
+      </div>
+      <div class="user-info">
+        welcome <strong>[[ user.first_name ]]</strong>! |
+        <a href="#" @click.prevent="logout">logout</a>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="secondary-nav">
+      <a href="/librarian/users">users</a>
+      <a href="/librarian/books" class="active">books</a>
+      <a href="/librarian/requests">requests</a>
+    </nav>
+
+    <!-- Books table -->
+    <table class="books-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th># <span @click="toggleSort('index')" class="sort-arrow">[[ arrow('index') ]]</span></th>
+          <th @click="toggleSort('name')" class="sortable">
+            title <span class="sort-arrow">[[ arrow('name') ]]</span>
+          </th>
+          <th @click="toggleSort('author')" class="sortable">
+            author <span class="sort-arrow">[[ arrow('author') ]]</span>
+          </th>
+          <th @click="toggleSort('isbn13')" class="sortable">
+            isbn 13 <span class="sort-arrow">[[ arrow('isbn13') ]]</span>
+          </th>
+          <th @click="toggleSort('status')" class="sortable">
+            status <span class="sort-arrow">[[ arrow('status') ]]</span>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(b, idx) in filteredBooks" :key="b._id">
+          <td><span class="status-dot active"></span></td>
+          <td>[[ idx + 1 ]]</td>
+          <td>[[ b.name ]]</td>
+          <td>[[ b.author ]]</td>
+          <td>[[ b.isbn13 ]]</td>
+          <td>active</td>
+          <td>
+            <button @click="deleteBook(b)">
+              <i class='bx bx-trash'></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="{{ url_for('static', filename='js/libBooks.js') }}"></script>
+</body>
+</html>

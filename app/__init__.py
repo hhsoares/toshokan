@@ -116,6 +116,20 @@ def search_page():
     query = request.args.get("q", "")
     return render_template("search_results.html", user=user, initial_query=query)
 
+@app.route("/librarian/users")
+def librarian_users_page():
+    user = session.get("user")
+    if not user or not user.get("is_librarian"):
+        return redirect(url_for("login"))
+    return render_template("lib_users.html", user=user)
+
+@app.route("/librarian/books")
+def librarian_books_page():
+    user = session.get("user")
+    if not user or not user.get("is_librarian"):
+        return redirect(url_for("login"))
+    return render_template("lib_books.html", user=user)
+
 from app.routes.books import books_bp
 from app.routes.users import users_bp
 app.register_blueprint(books_bp, url_prefix="/books")
