@@ -64,8 +64,10 @@
           <td>[[ u.status ]]</td>
           <td>
             <div v-if="u.active_books.length">
-              <div v-for="b in u.active_books">
-                [[ b.name ]] (due: [[ b.due ]])
+              <div v-for="b in u.active_books" style="margin-bottom: 4px;">
+                [[ b.name ]] (due: [[ b.due ]])<br/>
+                <button @click="extendBook(u._id, b.name)" title="Extend">📅</button>
+                <button @click="removeBook(u._id, b.name)" title="Remove">❌</button>
               </div>
             </div>
             <div v-else>--</div>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Requests – Toshokan 図書館</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/userDashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libRequests.css') }}">
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="logo">toshokan 図書館</div>
+    <div class="user-info">
+      welcome <strong>[[ user.first_name ]]</strong>! |
+      <a href="#" @click.prevent="logout">logout</a>
+    </div>
+  </header>
+
+  <nav class="secondary-nav">
+    <a href="/librarian/users">users</a>
+    <a href="/librarian/books">books</a>
+    <a href="/librarian/requests" class="active">requests</a>
+  </nav>
+
+  <section class="requests-section">
+    <h2>Pending Users</h2>
+    <div v-if="pendingUsers.length === 0">No pending users.</div>
+    <ul>
+      <li v-for="u in pendingUsers" :key="u._id">
+        [[ u.first_name ]] [[ u.last_name ]] – [[ u.email ]]
+        <button @click="approveUser(u)">Approve</button>
+        <button @click="refuseUser(u)">Refuse</button>
+      </li>
+    </ul>
+
+    <h2>Book Requests</h2>
+    <div v-if="bookRequests.length === 0">No book requests.</div>
+    <ul>
+      <li v-for="r in bookRequests" :key="r._id">
+        [[ r.user_email ]] requested <strong>[[ r.book_title ]]</strong>
+        <button @click="approveRequest(r)">Approve</button>
+        <button @click="refuseRequest(r)">Refuse</button>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<script src="{{ url_for('static', filename='js/libRequests.js') }}"></script>
+</body>
+</html>

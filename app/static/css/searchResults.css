@@ -248,3 +248,9 @@ main {
 .reserve-btn:hover {
   background-color: #f4d88e;
 }
+
+.reserve-btn.out-of-stock {
+  background-color: #ccc;
+  color: #555;
+  cursor: not-allowed;
+}

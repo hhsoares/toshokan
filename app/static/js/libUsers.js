@@ -32,11 +32,31 @@ createApp({
     async loadUsers() {
       const res = await fetch("/users");
       this.users = await res.json();
-      // stub in an array of active_books on each user
       this.users.forEach(u => {
-        u.status = u.is_librarian ? "active" : "active"; 
+        u.status = u.is_librarian ? "active" : "active";
         u.active_books = u.active_books || [];
       });
+    },
+    async removeBook(userId, bookName) {
+      const confirmDelete = confirm(`Remove "${bookName}" from this user?`);
+      if (!confirmDelete) return;
+
+      await fetch(`/books/user/${userId}/book/remove`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ book_name: bookName })
+      });
+
+      this.loadUsers();
+    },
+    async extendBook(userId, bookName) {
+      await fetch(`/books/user/${userId}/book/extend`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ book_name: bookName })
+      });
+
+      this.loadUsers();
     },
     toggleSort(key) {
       if (this.sortKey === key) {
@@ -55,7 +75,6 @@ createApp({
       window.location.href = "/";
     },
     deleteUser(u) {
-      // call your API to suspend or delete
       alert(`suspend user ${u.email}`);
     }
   },

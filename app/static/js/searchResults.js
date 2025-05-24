@@ -72,11 +72,35 @@ createApp({
       this.selectedBook = null;
     },
     reserveBook(book) {
-      alert(`Reserving: ${book.name}`);
-      // Implement reservation logic here
-      this.closeModal();
+      if (!this.user?.email) {
+        alert("You must be logged in to reserve a book.");
+        return;
+      }
+
+      fetch("/books/request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_email: this.user.email,
+          book_title: book.name,
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to reserve book");
+          return res.json();
+        })
+        .then((data) => {
+          alert("Reservation request sent to librarian.");
+          this.closeModal();
+        })
+        .catch((err) => {
+          alert("Error: " + err.message);
+          console.error(err);
+        });
     },
-    logout() {
+        logout() {
       localStorage.removeItem("user");
       window.location.href = "/";
     },

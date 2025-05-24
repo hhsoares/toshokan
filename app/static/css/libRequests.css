@@ -1,0 +1,49 @@
+header {
+  background-color: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #231F12;
+}
+
+.secondary-nav {
+  background-color: #FFE5BA;
+  display: flex;
+  gap: 32px;
+  padding: 10px 40px;
+  font-size: 14px;
+}
+
+.secondary-nav a {
+  color: #231F12;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.secondary-nav a.active,
+.secondary-nav a:hover {
+  text-decoration: underline;
+}
+
+.requests-section {
+  padding: 24px 40px;
+}
+
+.requests-section h2 {
+  margin-top: 24px;
+}
+
+.requests-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.requests-section li {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

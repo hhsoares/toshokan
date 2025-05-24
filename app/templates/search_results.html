@@ -93,8 +93,19 @@
             <p><strong>Title:</strong> [[ selectedBook.name ]]</p>
             <p><strong>Author:</strong> [[ selectedBook.author ]]</p>
             <p><strong>ISBN-13:</strong> [[ selectedBook.isbn13 ]]</p>
-            <button class="reserve-btn" @click="reserveBook(selectedBook)">
+            <button
+              v-if="selectedBook.quantity > 0"
+              class="reserve-btn"
+              @click="reserveBook(selectedBook)"
+            >
               reserve
+            </button>
+            <button
+              v-else
+              class="reserve-btn out-of-stock"
+              disabled
+            >
+              out of stock
             </button>
           </div>
         </div>

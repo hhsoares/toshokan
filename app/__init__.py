@@ -130,6 +130,13 @@ def librarian_books_page():
         return redirect(url_for("login"))
     return render_template("lib_books.html", user=user)
 
+@app.route("/librarian/requests")
+def librarian_requests_page():
+    user = session.get("user")
+    if not user or not user.get("is_librarian"):
+        return redirect(url_for("login"))
+    return render_template("lib_requests.html", user=user)
+
 from app.routes.books import books_bp
 from app.routes.users import users_bp
 app.register_blueprint(books_bp, url_prefix="/books")
