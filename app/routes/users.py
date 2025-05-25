@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, current_app, session
 from bson import ObjectId
+from datetime import datetime, timedelta
 
 users_bp = Blueprint("users", __name__)
 
@@ -52,6 +53,9 @@ def login_user():
     if not user or user["password"] != data["password"]:
         return {"error": "Invalid email or password"}, 401
 
+    if user.get("suspended"):
+        return {"error": "Account is suspended"}, 403
+
     user_info = {
         "first_name": user["first_name"],
         "last_name": user["last_name"],
@@ -89,3 +93,41 @@ def refuse_user(user_id):
     db = current_app.mongo.db
     db.user_requests.delete_one({"_id": ObjectId(user_id)})
     return {"message": "User request refused and removed"}, 200
+
+@users_bp.route("/suspend/<user_id>", methods=["POST"])
+def suspend_user(user_id):
+    db = current_app.mongo.db
+    data = request.get_json()
+    duration = data.get("duration")  # can be number of days or "permanent"
+
+    user = db.users.find_one({"_id": ObjectId(user_id)})
+    if not user:
+        return {"error": "User not found"}, 404
+
+    if duration == "permanent":
+        suspension_until = None
+    else:
+        try:
+            days = int(duration)
+            suspension_until = datetime.utcnow() + timedelta(days=days)
+        except:
+            return {"error": "Invalid duration"}, 400
+
+    db.users.update_one(
+        {"_id": ObjectId(user_id)},
+        {"$set": {
+            "suspended": True,
+            "suspension_until": suspension_until.isoformat() if suspension_until else None
+        }}
+    )
+    return {"message": "User suspended"}, 200
+
+
+@users_bp.route("/unsuspend/<user_id>", methods=["POST"])
+def unsuspend_user(user_id):
+    db = current_app.mongo.db
+    db.users.update_one(
+        {"_id": ObjectId(user_id)},
+        {"$set": {"suspended": False}, "$unset": {"suspension_until": ""}}
+    )
+    return {"message": "User unsuspended"}, 200

@@ -113,3 +113,76 @@ header {
 .status-dot.suspended {
   background: #AAA;
 }
+
+/* === MODAL === */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px 28px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modal-content label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.modal-content input {
+  padding: 8px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.modal-content p {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.modal-content .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+}
+
+.modal-content .reserve-btn {
+  background-color: #f1c27b;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #231F12;
+  border-radius: 6px;
+  cursor: pointer;
+}

@@ -9,6 +9,8 @@ createApp({
       searchQuery: "",
       sortKey: "index",
       sortAsc: true,
+      showSuspendModal: false,
+      selectedUser: null,
     };
   },
   computed: {
@@ -33,7 +35,7 @@ createApp({
       const res = await fetch("/users");
       this.users = await res.json();
       this.users.forEach(u => {
-        u.status = u.is_librarian ? "active" : "active";
+        u.status = u.suspended ? "suspended" : "active";
         u.active_books = u.active_books || [];
       });
     },
@@ -58,6 +60,36 @@ createApp({
 
       this.loadUsers();
     },
+    openSuspendModal(user) {
+      this.selectedUser = user;
+      this.showSuspendModal = true;
+    },
+    closeSuspendModal() {
+      this.showSuspendModal = false;
+      this.selectedUser = null;
+    },
+    async suspendUser() {
+      if (!this.selectedUser) return;
+
+      const payload = {
+        duration: "permanent"
+      };
+
+      await fetch(`/users/suspend/${this.selectedUser._id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      this.closeSuspendModal();
+      this.loadUsers();
+    },
+    async unsuspendUser(userId) {
+      await fetch(`/users/unsuspend/${userId}`, {
+        method: "POST"
+      });
+      this.loadUsers();
+    },
     toggleSort(key) {
       if (this.sortKey === key) {
         this.sortAsc = !this.sortAsc;
@@ -75,7 +107,7 @@ createApp({
       window.location.href = "/";
     },
     deleteUser(u) {
-      alert(`suspend user ${u.email}`);
+      this.openSuspendModal(u);
     }
   },
   mounted() {
