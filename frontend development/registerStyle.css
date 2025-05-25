@@ -24,6 +24,15 @@ header {
   color: #231F12;
 }
 
+.return {
+  color: #231F12;
+  text-decoration: none;
+}
+
+.return:hover {
+  text-decoration: underline;
+}
+
 .container {
   display: flex;
   justify-content: center;
