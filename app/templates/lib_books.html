@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Books – Toshokan 図書館</title>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/userDashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libDashboard.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/libBooks.css') }}">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
@@ -13,7 +13,8 @@
   <div id="app">
     <!-- Header -->
     <header>
-      <div class="logo">toshokan 図書館</div>
+      <a href="/librarian-dashboard" class="logo">toshokan 図書館</a>
+
       <div class="search-wrapper">
         <input
           type="text"
@@ -21,14 +22,16 @@
           placeholder="search for books"
           @keyup.enter="loadBooks"
         />
-        <button @click="loadBooks">🔍</button>
+        <button @click="loadBooks">
+          <i class="bx bx-search-alt-2" aria-label="search"></i>
+        </button>
       </div>
-      <div class="user-info">
+
+      <div v-if="user" class="user-info">
         welcome <strong>[[ user.first_name ]]</strong>! |
         <a href="#" @click.prevent="logout">logout</a>
       </div>
     </header>
-
     <!-- Navigation -->
     <nav class="secondary-nav">
       <div class="nav-links">

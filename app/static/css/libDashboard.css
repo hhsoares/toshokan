@@ -25,11 +25,14 @@ header {
 .logo {
   font-size: 28px;
   font-weight: 700;
+  flex: 1;
 }
 
 /* 4) user-info (20 → 16) */
 .user-info {
   font-size: 16px;
+  flex: 1;
+  text-align: right;
 }
 /* make just the username bold */
 .user-info strong {

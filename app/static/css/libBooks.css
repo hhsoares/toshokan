@@ -1,25 +1,6 @@
 /* === HEADER & NAVIGATION === */
-
-header {
-  background-color: #D5BC90;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 40px;
-  font-weight: bold;
-  font-size: 16px;
-  color: #231F12;
-  gap: 20px;
-}
-
-.logo {
-  flex: 1;
-}
-
 .search-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   flex: 2;
   max-width: 400px;
 }
@@ -27,21 +8,26 @@ header {
 .search-wrapper input {
   width: 100%;
   padding: 8px 12px;
-  border: none;
-  border-radius: 20px 0 0 20px;
+  padding-right: 40px;      /* make room for the icon */
+  border: 1px solid #ccc;
+  border-radius: 999px;      /* fully rounded */
   font-size: 14px;
+  background: #fff;
   outline: none;
 }
 
 .search-wrapper button {
-  padding: 8px 12px;
-  background-color: white;
+  position: absolute;
+  top: 50%;
+  right: 12px;               /* inside the pill */
+  transform: translateY(-50%);
   border: none;
-  border-radius: 0 20px 20px 0;
+  background: none;
+  padding: 0;
   cursor: pointer;
   font-size: 16px;
+  color: #231F12;
 }
-
 /* Navigation under header */
 .secondary-nav {
   background-color: #FFE5BA;
@@ -190,3 +176,23 @@ header {
 .close-btn:hover {
   color: #000;
 }
+/* — override header inherited weight — */
+header .user-info {
+  font-weight: normal;
+}
+header .user-info a {
+  font-weight: normal;
+  text-decoration: underline;   /* logout stays underlined */
+}
+header .user-info strong {
+  font-weight: 700;             /* only the name is bold */
+}
+/* Keep the logo link the same color as header text and remove underline */
+a.logo {
+  color: #231F12;       /* same dark header text */
+  text-decoration: none;
+}
+
+a.logo:hover,
+a.logo:focus {
+  text-decoration: none;  /* no underline on hover/focus either */

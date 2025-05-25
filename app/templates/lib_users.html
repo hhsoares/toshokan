@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Users – Toshokan 図書館</title>
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/userDashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libDashboard.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/libUsers.css') }}">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
   <div id="app">
-    <!-- Header -->
     <header>
-      <div class="logo">toshokan 図書館</div>
+      <a href="/librarian-dashboard" class="logo">toshokan 図書館</a>
+
+      <!-- middle, flex:2 -->
       <div class="search-wrapper">
         <input
           type="text"
@@ -21,14 +22,17 @@
           placeholder="search for users"
           @keyup.enter="loadUsers"
         />
-        <button @click="loadUsers">🔍</button>
+        <button @click="loadUsers">
+          <i class="bx bx-search-alt-2" aria-label="search"></i>
+        </button>
       </div>
-      <div class="user-info">
+
+      <!-- right, flex:1, right-aligned -->
+      <div v-if="user" class="user-info">
         welcome <strong>[[ user.first_name ]]</strong>! |
         <a href="#" @click.prevent="logout">logout</a>
       </div>
     </header>
-
     <!-- Navigation -->
     <nav class="secondary-nav">
       <a href="/librarian/users" class="active">users</a>
