@@ -161,3 +161,13 @@ def extend_due_date(user_id):
     )
 
     return {"message": "Due date extended by 1 week"}, 200
+
+@books_bp.route("/<book_id>", methods=["DELETE"])
+def delete_book(book_id):
+    db = current_app.mongo.db
+    result = db.books.delete_one({"_id": ObjectId(book_id)})
+
+    if result.deleted_count == 0:
+        return {"error": "Book not found or already deleted"}, 404
+
+    return {"message": "Book deleted successfully"}, 200

@@ -78,7 +78,21 @@ createApp({
       window.location.href = "/";
     },
     deleteBook(book) {
-      alert(`Delete book: ${book.name}`);
+      const confirmDelete = confirm(`Delete book "${book.name}"?`);
+      if (!confirmDelete) return;
+
+      fetch(`/books/${book._id}`, {
+        method: "DELETE"
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to delete book.");
+        return res.json();
+      })
+      .then(() => {
+        alert("Book deleted.");
+        this.loadBooks();
+      })
+      .catch(err => alert("Error: " + err.message));
     }
   },
   mounted() {

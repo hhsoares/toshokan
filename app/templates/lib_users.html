@@ -73,13 +73,27 @@
             <div v-else>--</div>
           </td>
           <td>
-            <button @click="deleteUser(u)">
+            <button v-if="u.status === 'suspended'" @click="unsuspendUser(u._id)">
+              <i class='bx bx-refresh'></i>
+            </button>
+            <button v-else @click="deleteUser(u)">
               <i class='bx bx-no-entry'></i>
             </button>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <!-- Suspend Modal -->
+    <div class="modal" v-if="showSuspendModal">
+      <div class="modal-content" style="max-width: 400px;">
+        <span class="close-btn" @click="closeSuspendModal">&times;</span>
+        <h3 style="text-align: center; margin-bottom: 20px;">
+          Suspend [[ selectedUser.first_name ]] [[ selectedUser.last_name ]]
+        </h3>
+        <button class="reserve-btn" @click="suspendUser">Confirm Suspension</button>
+      </div>
+    </div>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
