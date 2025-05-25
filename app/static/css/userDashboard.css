@@ -1,3 +1,8 @@
+/* static/css/userDashboard.css */
+
+/* 1) Import Space Grotesk and reset */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,96 +10,104 @@
   font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
 }
 
+/* 2) Body defaults */
 body {
   background: #FFFFFF;
   color: #231F12;
 }
 
+/* 3) Header */
 header {
   background-color: #D5BC90;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 12px 40px;
-}
-
-.logo {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.search-container {
-  flex: 1;
-  max-width: 500px;
-  margin: 0 40px;
-  display: flex;
-}
-
-.search-container input {
-  width: 100%;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px 0 0 8px;
-  font-size: 14px;
-  outline: none;
-}
-
-.search-container button {
-  padding: 8px 12px;
-  border: none;
-  background-color: white;
-  font-size: 16px;
-  border-radius: 0 8px 8px 0;
-  cursor: pointer;
-}
-
-.user-info {
-  font-size: 14px;
-}
-
-.user-info a {
-  margin-left: 8px;
-  text-decoration: none;
   color: #231F12;
 }
 
-.user-info a:hover {
-  text-decoration: underline;
+/* 3a) Logo */
+.logo {
+  flex: 1;
+  font-size: 28px;
+  font-weight: 700;
 }
 
+/* 3b) Centered pill-style search */
+.search-container {
+  position: relative;
+  flex: 2;
+  max-width: 400px;
+}
+.search-container input {
+  width: 100%;
+  padding: 8px 12px;
+  padding-right: 40px;       /* room for the icon */
+  border: 1px solid #ccc;
+  border-radius: 999px;      /* full pill shape */
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+.search-container button {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #231F12;
+}
+
+/* 3c) User info on the right */
+.user-info {
+  flex: 1;
+  font-size: 16px;
+  text-align: right;
+}
+.user-info strong {
+  font-weight: 700;
+}
+.user-info a {
+  text-decoration: underline;
+  color: #231F12;
+}
+.user-info a:hover {
+  opacity: 0.8;
+}
+
+/* 4) Main content */
 main {
   padding: 40px;
 }
 
+/* 5) Sections */
 .section {
   margin-bottom: 60px;
 }
-
 .section h2 {
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 24px;
 }
 
+/* 6) Book grid */
 .book-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 24px;
 }
-
 .book {
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
-
 .book:hover {
   transform: scale(1.03);
 }
-
 .book:hover .cover-placeholder {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
-
 .cover-placeholder {
   width: 230px;
   height: 350px;
@@ -104,110 +117,85 @@ main {
   margin: 0 auto 12px auto;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   transition: box-shadow 0.3s ease;
 }
-
 .title {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 4px;
-  color: #231F12;
 }
-
 .author {
   font-size: 14px;
   color: #666;
   font-style: italic;
 }
-
 .expire {
   font-size: 13px;
   color: #444;
   margin-top: 4px;
 }
 
+/* 7) Modal */
 .modal {
   position: fixed;
   z-index: 10;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
   backdrop-filter: blur(4px);
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
+  background-color: rgba(0,0,0,0.3);
+  display: flex; align-items: center; justify-content: center;
   transition: opacity 0.3s ease;
 }
-
 .modal-content {
-  background-color: #fff;
+  background: #fff;
   margin: 5% auto;
   padding: 30px 40px;
   border-radius: 16px;
-  width: 600px;
-  max-width: 90vw;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  width: 600px; max-width: 90vw;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  display: flex; gap: 40px; align-items: center;
   position: relative;
-  display: flex;
-  gap: 40px;
-  align-items: center;
 }
-
 .close-btn {
   position: absolute;
-  top: 12px;
-  right: 16px;
+  top: 12px; right: 16px;
   font-size: 24px;
   cursor: pointer;
   color: #aaa;
 }
-
 .close-btn:hover {
   color: #000;
 }
-
 .modal-body {
-  display: flex;
-  gap: 40px;
-  align-items: center;
+  display: flex; gap: 40px; align-items: center;
 }
-
 .modal-cover {
-  width: 230px;
-  height: 350px;
-  background-color: #ddd;
+  width: 230px; height: 350px;
+  background: #ddd;
   border-radius: 12px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-  background-size: cover;
-  background-position: center;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  background-size: cover; background-position: center;
   flex-shrink: 0;
 }
-
 .modal-info {
   flex: 1;
 }
-
 .modal-info h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
-
 .modal-info p {
   font-size: 16px;
   margin: 6px 0;
   color: #222;
 }
-
 .modal-info hr {
   margin: 20px 0;
   border: none;
   border-top: 1px solid #ccc;
 }
 
+/* 8) Reserve buttons */
 .reserve-btn {
   margin-top: 20px;
   background: #ffe5ba;
@@ -218,14 +206,12 @@ main {
   font-weight: bold;
   cursor: pointer;
   font-size: 16px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16);
   transition: background-color 0.2s ease;
 }
-
 .reserve-btn:hover {
   background-color: #f4d88e;
 }
-
 .reserve-btn.out-of-stock {
   background-color: #ccc;
   color: #555;
