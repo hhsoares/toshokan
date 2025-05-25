@@ -1,144 +1,217 @@
+/* reset + font */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
 }
 
-.header-left, .footer-left {
-  padding-left: 40px; /* or whatever you need */
-}
-
+/* page background + vertical layout */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #ffe5ba;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #ffe5ba;
+  justify-content: space-between;
 }
 
+/* === HEADER === */
+header {
+  background-color: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  color: #231F12;
+}
+header .logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #231F12;
+  text-decoration: none;
+}
+header .return {
+  font-size: 16px;
+  font-weight: normal;
+  color: #231F12;
+  text-decoration: none;
+}
+header .return:hover {
+  text-decoration: underline;
+}
+
+/* === MAIN CONTENT === */
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 346px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 40px 80px;
+  gap: 80px;
 }
 
+/* left side “welcome” */
+.register-link {
+  flex: 1;
+  max-width: 400px;
+  color: #231F12;
+}
+.register-link h1 {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+.register-link p {
+  font-size: 16px;
+}
+.register-link a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* right side login box */
 .wrapper {
-
-    width: 504px;
-    height: 492px;
-    background: #231F12;
-    color: #FFE5BA;
-    border-radius: 16px;
-    padding: 30px 40px;
+  width: 400px;
+  background: #231F12;
+  color: #FFE5BA;
+  border-radius: 16px;
+  padding: 30px 40px;
 }
-
-
 .wrapper h1 {
-
-    font-size: 40px;
-    text-align: left;
-    /*padding-left: 30px;
-    padding-top: 30px;*/
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
-.wrapper .input-box {
-
-    width: 100%;
-    height: 50px;
-    margin: 30px 0;
-    /*padding-left: 30px; */
-
-
+.input-box {
+  width: 100%;
+  margin: 10px 0 20px;
 }
-
 .input-box input {
-
-    width: 408px;
-    height: 48px;
-    background: #D5BC90;
-    border: none;
-    outline: none;
-    border: 2px solid #D5BC90;
-    border-radius: 16px;
-    font-size: 16px;
-    color: #231F12;
-    padding: 20px 45px 20px 20px;
+  width: 100%;
+  height: 48px;
+  background: #D5BC90;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  color: #231F12;
+  padding: 0 20px;
 }
-
 .input-box input::placeholder {
-    color: #231F12;
+  color: #231F12;
 }
 
-.wrapper .remember-forgot {
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #D5BC90;
+  margin-bottom: 20px;
+}
+.remember-forgot label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+/* always-filled tan box */
+.remember-forgot input[type="checkbox"] {
+  /* strip native styling */
+  -webkit-appearance: none;
+  appearance: none;
 
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin: -15px 0 15px;
-    padding-left: 8px;
-    padding-top: 10px;
+  /* size & layout */
+  width: 16px;
+  height: 16px;
+  margin: 0 4px 0 0;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+
+  /* always tan fill & border */
+  background-color: #D5BC90;
+  border: 2px solid #D5BC90;
+  border-radius: 4px;
 }
 
-.remember-forgot label input {
-    accent-color: #D5BC90;
-    margin-right: 3px;
-
+.remember-forgot input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  border: solid #231F12;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .remember-forgot a {
-
-    color: #D5BC90;
-    text-decoration: none;
-    padding-right: 8px;
-
+  color: #D5BC90;
+  text-decoration: none;
 }
-
 .remember-forgot a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-.wrapper .btn {
-    width: 172px;
-    height: 40px;
-    background: #FFE5BA;
-    border: none;
-    outline: none;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    cursor: pointer;
-    font-size: 28px;
-    color: #333;
-    font-weight: 600;
-    display: block;
-    margin: 0 auto;
-
+.btn {
+  width: 10rem;      /* ~172px */
+  height: 2.5rem;    /* ~40px */
+  background: #FFE5BA;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.2s ease;
 }
-
-.register-link {
-    color: #231F12;
-    font-size: 18px;
-}
-
-.register-link h1 {
-    font-size: 64px;
-    color: #231F12;
-}
-
-.register-link p a {
-    color: #000000;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.register-link p a:hover {
-    text-decoration: underline;
+.btn:hover {
+  transform: scale(1.05);
 }
 
 .loginWith {
-    color: #D5BC90;
-    font-size: 14px;
-    text-align: center;
-    padding-top: 20px;
+  text-align: center;
+  color: #D5BC90;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.google-login-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  color: #D5BC90;
+  font-size: 24px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+.google-login-btn:hover {
+  transform: scale(1.1);
+}
+
+/* === FOOTER === */
+footer {
+  background: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  font-size: 14px;
+  color: #231F12;
+}
+footer .version {
+  font-weight: bold;
+  font-size: 16px;
+}
+footer .authors {
+  font-size: 1rem;
 }
