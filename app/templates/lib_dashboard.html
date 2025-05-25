@@ -2,29 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Librarian Dashboard</title>
+  <title>Librarian Dashboard – Toshokan 図書館</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Top bar styling -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/userDashboard.css') }}">
-
-  <!-- Secondary nav styling -->
-  <style>
-    .secondary-nav {
-      background-color: #FFE5BA;
-      display: flex;
-      gap: 24px;
-      padding: 8px 40px;
-    }
-    .secondary-nav a {
-      color: #231F12;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .secondary-nav a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <!-- Dashboard header & nav styling -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libDashboard.css') }}">
 </head>
 
 <body>
@@ -33,7 +15,8 @@
     <header>
       <div class="logo">toshokan 図書館</div>
       <div v-if="user" class="user-info">
-        welcome [[ user.first_name ]]! | <a href="#" @click.prevent="logout">logout</a>
+        welcome <strong>[[ user.first_name ]]</strong>! |
+        <a href="#" @click.prevent="logout">logout</a>
       </div>
       <div v-else class="user-info">
         Redirecting to login...
@@ -47,11 +30,10 @@
       <a href="/librarian/requests">requests</a>
     </nav>
 
-    <!-- (Optional) your librarian page content goes here -->
+    <!-- Your librarian page content here -->
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-  <!-- keep whatever script you use to mount #app -->
   <script src="{{ url_for('static', filename='js/userDashboard.js') }}"></script>
 </body>
 </html>

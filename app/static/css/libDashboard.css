@@ -1,0 +1,64 @@
+/* 1) import Space Grotesk */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+
+/* 2) reset + base font */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 3) top header */
+header {
+  background-color: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  color: #231F12;
+}
+
+/* 3a) logo styling (32 → 28) */
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* 4) user-info (20 → 16) */
+.user-info {
+  font-size: 16px;
+}
+/* make just the username bold */
+.user-info strong {
+  font-weight: 700;
+}
+/* logout link always underlined, same color */
+.user-info a {
+  color: #231F12;
+  text-decoration: underline;
+}
+.user-info a:hover {
+  /* you can optionally darken on hover, or remove this */
+  opacity: 0.8;
+}
+
+/* 5) secondary nav (24 → 20) */
+.secondary-nav {
+  background-color: #FFE5BA;
+  display: flex;
+  gap: 32px;
+  padding: 10px 40px;
+}
+.secondary-nav a {
+  font-size: 20px;
+  font-weight: 700;
+  color: #231F12;
+  text-decoration: none;
+}
+.secondary-nav a:hover,
+.secondary-nav a.active {
+  text-decoration: underline;
+}
