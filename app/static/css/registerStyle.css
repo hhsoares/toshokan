@@ -1,3 +1,6 @@
+/* 1) Reset & font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,57 +8,83 @@
   font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
 }
 
+/* 2) Page layout */
 body {
-  background: #FFE5BA;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background: #ffe5ba;
   justify-content: space-between;
 }
 
+/* 3) Header */
+header {
+  background-color: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  color: #231F12;
+}
+header .logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #231F12;
+  text-decoration: none;
+}
+header .return {
+  font-size: 16px;
+  font-weight: normal;
+  color: #231F12;
+  text-decoration: none;
+}
+header .return:hover {
+  text-decoration: underline;
+}
+
+/* 4) Main container */
 .container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex: 1;
   padding: 40px 80px;
+  gap: 60px;
 }
 
+/* 4a) Left welcome text */
 .welcome-text {
   flex: 1;
-  color: #231F12;
-  font-size: 18px;
   max-width: 500px;
+  color: #231F12;
 }
-
 .welcome-text h1 {
   font-size: 48px;
   margin-bottom: 12px;
 }
-
 .welcome-text p {
   font-size: 16px;
-  color: #231F12;
+  line-height: 1.4;
 }
 
+/* 4b) Right form wrapper */
 .wrapper {
   width: 504px;
   background: #231F12;
   color: #FFE5BA;
   border-radius: 16px;
   padding: 30px 40px;
-  margin-left: 60px;
 }
-
 .wrapper h1 {
   font-size: 36px;
   margin-bottom: 20px;
 }
 
+/* 5) Inputs */
 .input-box {
   width: 100%;
   margin-bottom: 20px;
 }
-
 .input-box input {
   width: 100%;
   height: 48px;
@@ -67,50 +96,85 @@ body {
   color: #231F12;
   padding: 0 20px;
 }
-
 .input-box input::placeholder {
   color: #231F12;
 }
 
+/* 6) Librarian checkbox wrapper */
 .checkbox-area {
   display: flex;
   align-items: center;
   font-size: 14px;
   margin-bottom: 20px;
 }
-
-.checkbox-area input {
-  accent-color: #D5BC90;
-  margin-right: 8px;
+/* 6a) center text beside custom box */
+.checkbox-area label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
+/* 6b) override native box and inject tan + checkmark */
+.checkbox-area input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+
+  background-color: #D5BC90;
+  border: 2px solid #D5BC90;
+  border-radius: 4px;
+}
+.checkbox-area input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  border: solid #231F12;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* 7) Submit button */
 .btn {
-  width: 100%;
-  height: 40px;
+  width: 10rem;
+  height: 2.5rem;
   background: #FFE5BA;
   border: none;
-  border-radius: 16px;
-  font-size: 20px;
+  border-radius: 999px;
+  font-size: 1.75rem;
   font-weight: 600;
   color: #231F12;
   cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.2s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
 }
 
+/* 8) Footer */
 footer {
-  text-align: center;
   background: #D5BC90;
-  color: #231F12;
-  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
   font-size: 14px;
+  color: #231F12;
 }
-
-footer a {
-  color: #000000;
-  font-weight: 600;
-  text-decoration: none;
-  margin-right: 16px;
+footer .version {
+  font-weight: bold;
+  font-size: 16px;
 }
-
-footer a:hover {
-  text-decoration: underline;
+footer .authors {
+  font-size: 1rem;
 }

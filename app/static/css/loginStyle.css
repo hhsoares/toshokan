@@ -215,3 +215,10 @@ footer .version {
 footer .authors {
   font-size: 1rem;
 }
+
+.input-box input:focus:invalid {
+  box-shadow: none !important;
+}
+.input-box input:focus {
+  outline: none;
+}
