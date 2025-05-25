@@ -7,12 +7,13 @@
   <title>Search Results</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/searchResults.css') }}" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
   <div id="app">
     <header>
-      <div class="logo">toshokan 図書館</div>
+      <a href="/dashboard" class="logo">toshokan 図書館</a>
       <div class="search-container">
         <input
           type="text"
@@ -20,10 +21,12 @@
           placeholder="search for books, authors, ISBNs"
           @keyup.enter="searchBooks"
         />
-        <button @click="searchBooks">🔍</button>
+        <button @click="goToSearch">
+          <i class="bx bx-search-alt-2" aria-label="search"></i>
+        </button>
       </div>
-      <div class="user-info">
-        <span>welcome <strong>[[ user.first_name ]]</strong>!</span>
+      <div v-if="user" class="user-info">
+        welcome <strong>[[ user.first_name ]]</strong>! |
         <a href="#" @click.prevent="logout">logout</a>
       </div>
     </header>
