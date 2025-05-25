@@ -13,6 +13,17 @@ body {
   justify-content: space-between;
 }
 
+header {
+  background-color: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #231F12;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -97,20 +108,23 @@ body {
 }
 
 footer {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: #D5BC90;
   color: #231F12;
-  padding: 10px;
+  padding: 12px 40px;
   font-size: 14px;
 }
 
-footer a {
-  color: #000000;
-  font-weight: 600;
-  text-decoration: none;
-  margin-right: 16px;
+.version {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-left: 11.5vw;
 }
 
-footer a:hover {
-  text-decoration: underline;
+.authors {
+  font-size: 1rem;
+  margin-right: 11.5vw;
 }
+

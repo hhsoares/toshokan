@@ -6,13 +6,6 @@
 }
 
 body {
-  /*margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  background: #ffe5ba;
-  /*font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;*/
   background: #FFE5BA;
   min-height: 100vh;
   display: flex;
@@ -29,6 +22,29 @@ header {
   font-weight: bold;
   font-size: 16px;
   color: #231F12;
+  z-index: 1;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .image-wrapper {
+    margin-top: -40px;
+    margin-bottom: -40px;
+    max-width: 90vw;
+  }
+
+  .introducing h1 {
+    font-size: 2.5rem;
+  }
+
+  .introducing p {
+    font-size: 1.2rem;
+  }
+
+  .introducing .btn {
+    width: 100%;
+    font-size: 1.2rem;
+  }
 }
 
 .login {
@@ -45,6 +61,7 @@ header {
   justify-content: center;
   align-items: center;
   flex: 1;
+  gap: 4rem;
 }
 
 .introducing {
@@ -79,36 +96,29 @@ header {
   font-weight: 600;
   display: block;
   font-size: auto;
+  transition: transform 0.2s ease;
 }
 
-/*.image-wrapper {
-  /*display: flex;
-  justify-content: flex-end;
-  padding-right: 80px;
-  padding-top: 40px;
-  padding-left: 676px;*/
-  /*width: 1247px;
-  height: 1000px;
-  flex-shrink: 0;
-  overflow: hidden;
-}*/
+.introducing .btn:hover {
+  transform: scale(1.1);
+}
 
 .image-wrapper {
-  width: 45vw;
-  height: 100%;
-  max-width: 1247px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -80px;
+  z-index: 2;
+  position: relative;
 }
 
 .image-wrapper img {
   width: 100%;
   height: auto;
-}
-
-/*.image-wrapper img {
-  width: 100%;
-  height: 100;
+  max-height: 100vh;
   object-fit: contain;
-}*/
+}
 
 footer {
   display: flex;
@@ -120,15 +130,18 @@ footer {
   font-size: 14px;
 }
 
-.version{
+.version {
   font-weight: bold;
   font-size: 1.25rem;
   margin-left: 11.5vw;
 }
 
-.authors{
+.authors {
   font-size: 1rem;
   margin-right: 11.5vw;
 }
 
-
+header, footer {
+  position: relative;
+  z-index: 1; /* atrás da imagem */
+}
