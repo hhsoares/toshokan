@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Requests – Toshokan 図書館</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/userDashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/libDashboard.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/libRequests.css') }}">
 </head>
 <body>
 <div id="app">
   <header>
-    <div class="logo">toshokan 図書館</div>
+    <a href="/librarian-dashboard" class="logo">toshokan 図書館</a>
     <div class="user-info">
       welcome <strong>[[ user.first_name ]]</strong>! |
       <a href="#" @click.prevent="logout">logout</a>

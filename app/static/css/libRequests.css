@@ -47,3 +47,24 @@ header {
   align-items: center;
   gap: 16px;
 }
+/* — override header inherited weight — */
+header .user-info {
+  font-weight: normal;
+}
+header .user-info a {
+  font-weight: normal;
+  text-decoration: underline;   /* logout stays underlined */
+}
+header .user-info strong {
+  font-weight: 700;             /* only the name is bold */
+}
+/* Keep the logo link the same color as header text and remove underline */
+a.logo {
+  color: #231F12;       /* same dark header text */
+  text-decoration: none;
+}
+
+a.logo:hover,
+a.logo:focus {
+  text-decoration: none;  /* no underline on hover/focus either */
+}
