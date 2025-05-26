@@ -21,7 +21,7 @@ header {
     color: #231F12;
     font-weight: bold;
     font-size: 16px;
-    padding: 0 32px;
+    padding: 0 128px;
     height: 48px;
     display: flex;
     align-items: center;
@@ -35,7 +35,7 @@ footer {
     background-color: #D5BC90;
     color: #231F12;
     font-size: 14px;
-    padding: 0 32px;
+    padding: 0 128px;
     height: 48px;
     display: flex;
     align-items: center;
