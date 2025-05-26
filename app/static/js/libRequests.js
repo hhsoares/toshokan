@@ -1,45 +1,109 @@
+// static/js/libRequests.js
 const { createApp } = Vue;
 
 createApp({
   delimiters: ["[[", "]]"],
   data() {
     return {
-      user: JSON.parse(sessionStorage.getItem("user") || localStorage.getItem("user") || "null"),
+      user: JSON.parse(
+        sessionStorage.getItem("user") ||
+        localStorage.getItem("user") ||
+        "null"
+      ),
       pendingUsers: [],
       bookRequests: [],
     };
   },
   methods: {
     async loadRequests() {
-      const usersRes = await fetch("/users/pending");
-      const booksRes = await fetch("/books/requests");
-      this.pendingUsers = await usersRes.json();
-      this.bookRequests = await booksRes.json();
+      try {
+        const [usersRes, booksRes] = await Promise.all([
+          fetch("/users/pending"),
+          fetch("/books/requests")
+        ]);
+        this.pendingUsers = await usersRes.json();
+        this.bookRequests  = await booksRes.json();
+      } catch (err) {
+        alert("Failed to load requests: " + err.message);
+      }
     },
+
     async approveUser(u) {
-      await fetch(`/users/approve/${u._id}`, { method: "POST" });
-      this.loadRequests();
+      try {
+        const res  = await fetch(`/users/approve/${u._id}`, { method: "POST" });
+        const body = await res.json();
+        if (res.ok) {
+          alert(`✔️ ${body.message}`);
+        } else {
+          alert(`❌ ${body.error || body.message}`);
+        }
+      } catch (err) {
+        alert("Server error: " + err.message);
+      } finally {
+        this.loadRequests();
+      }
     },
+
     async refuseUser(u) {
-      await fetch(`/users/refuse/${u._id}`, { method: "POST" });
-      this.loadRequests();
+      try {
+        const res  = await fetch(`/users/refuse/${u._id}`, { method: "POST" });
+        const body = await res.json();
+        if (res.ok) {
+          alert(`✔️ ${body.message}`);
+        } else {
+          alert(`❌ ${body.error || body.message}`);
+        }
+      } catch (err) {
+        alert("Server error: " + err.message);
+      } finally {
+        this.loadRequests();
+      }
     },
+
     async approveRequest(r) {
-      await fetch(`/books/requests/${r._id}/approve`, { method: "POST" });
-      this.loadRequests();
+      try {
+        const res  = await fetch(`/books/requests/${r._id}/approve`, { method: "POST" });
+        const body = await res.json();
+        if (res.ok) {
+          alert(`✔️ ${body.message}`);
+        } else {
+          alert(`❌ ${body.error || body.message}`);
+        }
+      } catch (err) {
+        alert("Server error: " + err.message);
+      } finally {
+        this.loadRequests();
+      }
     },
+
     async refuseRequest(r) {
-      await fetch(`/books/requests/${r._id}/refuse`, { method: "POST" });
-      this.loadRequests();
+      try {
+        const res  = await fetch(`/books/requests/${r._id}/refuse`, { method: "POST" });
+        const body = await res.json();
+        if (res.ok) {
+          alert(`✔️ ${body.message}`);
+        } else {
+          alert(`❌ ${body.error || body.message}`);
+        }
+      } catch (err) {
+        alert("Server error: " + err.message);
+      } finally {
+        this.loadRequests();
+      }
     },
+
     logout() {
       sessionStorage.removeItem("user");
       localStorage.removeItem("user");
       window.location.href = "/";
     }
   },
+
   mounted() {
-    if (!this.user) return (window.location.href = "/");
+    if (!this.user) {
+      window.location.href = "/";
+      return;
+    }
     this.loadRequests();
   }
 }).mount("#app");
