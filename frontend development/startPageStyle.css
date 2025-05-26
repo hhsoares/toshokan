@@ -6,142 +6,175 @@
 }
 
 body {
-  background: #FFE5BA;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-header {
-  background-color: #D5BC90;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 40px;
-  font-weight: bold;
-  font-size: 16px;
-  color: #231F12;
-  z-index: 1;
-  position: relative;
-}
-
-@media (max-width: 768px) {
-  .image-wrapper {
-    margin-top: -40px;
-    margin-bottom: -40px;
-    max-width: 90vw;
-  }
-
-  .introducing h1 {
-    font-size: 2.5rem;
-  }
-
-  .introducing p {
-    font-size: 1.2rem;
-  }
-
-  .introducing .btn {
-    width: 100%;
-    font-size: 1.2rem;
-  }
-}
-
-.login {
-  color: #231F12;
-  text-decoration: none;
-}
-
-.login:hover {
-  text-decoration: underline;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  gap: 4rem;
-}
-
-.introducing {
-  flex: 1;
-  color: #231F12;
-  font-size: 18px;
-  max-width: 500px;
-  padding-top: center;
-}
-
-.introducing h1 {
-  font-size: 4rem;
-  margin-bottom: 12px;
-}
-
-.introducing p {
-  font-size: 2rem;
-  padding-bottom: 34px;
-}
-
-.introducing .btn {
-  width: 10rem; /* ~172px */
-  height: 2.5rem; /* ~40px */
-  background: #231F12;
-  border: none;
-  outline: none;
-  border-radius: 16px;
-  box-shadow: #FFE5BA;
-  cursor: pointer;
-  font-size: 1.75rem; /* ~28px */
-  color: #FFE5BA;
-  font-weight: 600;
-  display: block;
-  font-size: auto;
-  transition: transform 0.2s ease;
-}
-
-.introducing .btn:hover {
-  transform: scale(1.1);
-}
-
-.image-wrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: -80px;
-  z-index: 2;
-  position: relative;
-}
-
-.image-wrapper img {
-  width: 100%;
-  height: auto;
-  max-height: 100vh;
-  object-fit: contain;
-}
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #D5BC90;
-  color: #231F12;
-  padding: 12px 40px;
-  font-size: 14px;
-}
-
-.version {
-  font-weight: bold;
-  font-size: 1.25rem;
-  margin-left: 11.5vw;
-}
-
-.authors {
-  font-size: 1rem;
-  margin-right: 11.5vw;
+    background: #FFE5BA;
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
 }
 
 header, footer {
+    background-color: #D5BC90;
+    color: #231F12;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0 32px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+
+    position: relative;
+    z-index: 1;
+}
+
+footer {
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.version {
+    font-weight: bold;
+}
+
+.container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 0;
+  min-width: 0;
+  width: 100vw;
   position: relative;
-  z-index: 1; /* atrás da imagem */
+  z-index: 1;
+}
+
+
+.image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100; /* Image is above header/footer and everything else */
+  pointer-events: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+.image-wrapper img {
+  width: 66vw;
+  max-width: 900px;
+  height: 100vh;
+  object-fit: cover;
+  object-position: right top;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Make sure introducing (text side) is above the image */
+.introducing {
+    position: relative;
+    z-index: 1;
+    color: #231F12;
+    max-width: 370px;
+    min-width: 320px;
+    margin-left: 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: none;
+}
+
+.introducing h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.introducing p {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.introducing .btn {
+    margin-top: 10px;
+    padding: 8px 26px;
+    background: #231F12;
+    border: none;
+    border-radius: 12px;
+    color: #FFE5BA;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    width: auto;
+    display: inline-block;
+    box-shadow: none;
+}
+
+.introducing .btn:hover {
+    transform: scale(1.08);
+}
+
+.login {
+    color: #231F12;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.login:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+    .image-wrapper img {
+        width: 95vw;
+        max-width: none;
+    }
+    .introducing {
+        margin-left: 4vw;
+    }
+}
+
+@media (max-width: 700px) {
+    header, footer {
+        padding: 0 10px;
+        font-size: 13px;
+        height: 38px;
+    }
+    .introducing h1 {
+        font-size: 1.4rem;
+    }
+    .introducing p {
+        font-size: 1rem;
+    }
+    .introducing .btn {
+        font-size: .95rem;
+        padding: 8px 20px;
+        border-radius: 12px;
+    }
+    .container {
+        gap: 0;
+        min-width: 0;
+    }
+    .image-wrapper img {
+        width: 100vw;
+    }
+    .introducing {
+        margin-left: 3vw;
+        margin-top: 18vw;
+        max-width: 90vw;
+    }
 }
