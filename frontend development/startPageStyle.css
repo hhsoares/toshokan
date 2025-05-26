@@ -27,7 +27,7 @@ header {
     align-items: center;
     justify-content: space-between;
     position: relative;
-    z-index: 2; /* lower than image */
+    z-index: 2; 
     flex-shrink: 0;
 }
 
@@ -41,7 +41,7 @@ footer {
     align-items: center;
     justify-content: space-between;
     position: relative;
-    z-index: 1000; /* always above the image */
+    z-index: 1000;
     flex-shrink: 0;
 }
 
@@ -80,14 +80,13 @@ footer {
 .image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: contain;   /* Never crop, always show full image */
+    object-fit: contain;
     object-position: right top;
     display: block;
     user-select: none;
     pointer-events: none;
 }
 
-/* Make sure introducing (text side) is above the image */
 .introducing {
     position: relative;
     z-index: 1;
