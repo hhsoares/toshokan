@@ -1,0 +1,254 @@
+/* static/css/homePageBase.css */
+
+/* 1) Reset + font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Space Grotesk', Arial, Helvetica, sans-serif;
+}
+
+/* 2) Page layout */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #ffe5ba;
+  justify-content: space-between;
+}
+
+/* 3) Header */
+header {
+  background-color: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  color: #231F12;
+}
+header .logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #231F12;
+  text-decoration: none;
+}
+header .return {
+  font-size: 16px;
+  color: #231F12;
+  text-decoration: none;
+}
+header .return:hover {
+  text-decoration: underline;
+}
+
+/* 4) Main container (login / register / forgot) */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 40px 80px;
+  gap: 80px;
+}
+
+/* 4a) Left panel (“welcome!”, “one account…” ) */
+.register-link,
+.welcome-text {
+  flex: 1;
+  max-width: 500px;
+  color: #231F12;
+}
+.register-link h1,
+.welcome-text h1 {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+.register-link p,
+.welcome-text p {
+  font-size: 16px;
+  line-height: 1.4;
+}
+.register-link a,
+.welcome-text a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}
+.register-link a:hover,
+.welcome-text a:hover {
+  text-decoration: underline;
+}
+
+/* 4b) Right‐side box */
+.wrapper {
+  width: 400px;
+  background: #231F12;
+  color: #FFE5BA;
+  border-radius: 16px;
+  padding: 30px 40px;
+}
+.wrapper h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* 4c) In‐form labels (e.g. “type your e-mail:”) */
+.wrapper form label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #D5BC90;
+}
+
+/* 5) Inputs */
+.input-box {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.input-box input {
+  width: 100%;
+  height: 48px;
+  background: #D5BC90;
+  border: none;
+  outline: none;
+  border-radius: 16px;
+  font-size: 16px;
+  color: #231F12;
+  padding: 0 20px;
+}
+.input-box input::placeholder {
+  color: #231F12;
+}
+
+/* 6) Checkbox rows (“remember me” & “librarian account”) */
+.remember-forgot,
+.checkbox-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #D5BC90;
+  margin-bottom: 20px;
+}
+.remember-forgot label,
+.checkbox-area label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.remember-forgot input[type="checkbox"],
+.checkbox-area input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+  background-color: #D5BC90;
+  border: 2px solid #D5BC90;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -2px; /* 👈 Fixes alignment */
+}
+.remember-forgot input[type="checkbox"]:checked::after,
+.checkbox-area input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 4px; height: 8px;
+  border: solid #231F12;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.remember-forgot a {
+  margin: 0; /* container’s justify-content handles it */
+  color: #D5BC90;
+  text-decoration: none;
+}
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+/* 7) Buttons */
+.btn {
+  width: 10rem;
+  height: 2.5rem;
+  background: #FFE5BA;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto; /* no extra top-margin by default */
+  transition: transform 0.2s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* ─── forgotten-password only ─── */
+/* on the forgot‐password page (body.forgot-password)
+   remove the 20px gap under the single input
+   and instead push the “send” button down 20px */
+body.forgot-password .input-box {
+  margin-bottom: 0;
+}
+body.forgot-password .btn {
+  margin-top: 20px;
+}
+
+/* 8) “Or sign in with” */
+.loginWith {
+  text-align: center;
+  color: #D5BC90;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.google-login-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  color: #D5BC90;
+  font-size: 24px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+.google-login-btn:hover {
+  transform: scale(1.1);
+}
+
+/* 9) Footer */
+footer {
+  background: #D5BC90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  font-size: 14px;
+  color: #231F12;
+}
+footer .version {
+  font-weight: bold;
+  font-size: 16px;
+}
+footer .authors {
+  font-size: 1rem;
+}
+
+/* 10) Remove native focus outlines */
+.input-box input:focus:invalid {
+  box-shadow: none !important;
+}
+.input-box input:focus {
+  outline: none;
+}

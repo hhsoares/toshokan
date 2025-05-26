@@ -5,49 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register – Toshokan 図書館</title>
 
-  <!-- combined CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/registerStyle.css') }}">
+  <!-- unified base CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/homePageBase.css') }}">
+  <!-- fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- header -->
   <header>
     <a href="/" class="logo">toshokan 図書館</a>
-    <a href="/" class="return">return</a>
+    <a href="{{ url_for('login') }}" class="return">return</a>
   </header>
 
+  <!-- main register container -->
   <div id="app" class="container">
-    <!-- left side “one account…” text -->
     <div class="welcome-text">
       <h1>one account,<br>infinite pages.</h1>
-      <p>register to find stories, knowledge, and<br>
-         tools that shape your future.</p>
+      <p>register to find stories, knowledge,<br>and tools that shape your future.</p>
     </div>
 
-    <!-- right side form -->
     <div class="wrapper">
       <form @submit.prevent="registerUser">
         <h1>register</h1>
 
         <div class="input-box">
-          <input type="text" placeholder="first name" required v-model="first_name" />
+          <input type="text" placeholder="first name" v-model="first_name" required>
         </div>
         <div class="input-box">
-          <input type="text" placeholder="last name" required v-model="last_name" />
+          <input type="text" placeholder="last name" v-model="last_name" required>
         </div>
         <div class="input-box">
-          <input type="email" placeholder="e-mail" required v-model="email" />
+          <input type="email" placeholder="e-mail" v-model="email" required>
         </div>
         <div class="input-box">
-          <input type="password" placeholder="password" required v-model="password" />
+          <input type="password" placeholder="password" v-model="password" required>
         </div>
         <div class="input-box">
-          <input type="password" placeholder="confirm password" required v-model="confirm_password" />
+          <input type="password" placeholder="confirm password" v-model="confirm_password" required>
         </div>
 
         <div class="checkbox-area">
           <label>
-            <input type="checkbox" v-model="is_librarian" />
+            <input type="checkbox" v-model="is_librarian">
             librarian account
           </label>
         </div>
@@ -57,13 +56,13 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- footer -->
   <footer>
     <p class="version">Toshokan – 2025</p>
     <p class="authors">Feito por Guilherme Pereira e Hugo Soares</p>
   </footer>
 
-  <!-- Vue + your registration logic -->
+  <!-- Vue + logic -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="{{ url_for('static', filename='js/register.js') }}"></script>
 </body>

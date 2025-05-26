@@ -5,29 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login – Toshokan 図書館</title>
 
-  <!-- use your combined CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/loginStyle.css') }}">
+  <!-- unified base CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/homePageBase.css') }}">
+  <!-- fonts + icons -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <!-- header + return link -->
+  <!-- header -->
   <header>
     <a href="/" class="logo">toshokan 図書館</a>
     <a href="{{ url_for('login') }}" class="return">return</a>
   </header>
 
+  <!-- main login container -->
   <div id="app" class="container">
-    <!-- left “welcome / register” panel -->
     <div class="register-link">
       <h1>welcome!</h1>
-      <p>don't have an account? 
-        <a href="{{ url_for('register') }}">register here!</a>
-      </p>
+      <p>don't have an account? <a href="{{ url_for('register') }}">register here!</a></p>
     </div>
 
-    <!-- right login box -->
     <div class="wrapper">
       <form @submit.prevent="loginUser">
         <h1>login</h1>
@@ -65,7 +63,7 @@
     <p class="authors">Feito por Guilherme Pereira e Hugo Soares</p>
   </footer>
 
-  <!-- Vue app + login logic -->
+  <!-- Vue + logic -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
   <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </body>
