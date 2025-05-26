@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Books – Toshokan 図書館</title>
 
+  <!-- base dashboard styles (header/nav) -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/libDashboard.css') }}">
+  <!-- this file -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/libBooks.css') }}">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
   <div id="app">
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
       <a href="/librarian-dashboard" class="logo">toshokan 図書館</a>
 
@@ -32,7 +34,8 @@
         <a href="#" @click.prevent="logout">logout</a>
       </div>
     </header>
-    <!-- Navigation -->
+
+    <!-- SECONDARY NAV -->
     <nav class="secondary-nav">
       <div class="nav-links">
         <a href="/librarian/users">users</a>
@@ -42,7 +45,7 @@
       <button class="add-book-btn" @click="showModal = true">add book</button>
     </nav>
 
-    <!-- Modal -->
+    <!-- ADD-BOOK MODAL (unchanged) -->
     <div class="modal" v-if="showModal">
       <div class="modal-content">
         <span class="close-btn" @click="showModal = false">&times;</span>
@@ -63,33 +66,47 @@
       </div>
     </div>
 
-    <!-- Books table -->
-    <table class="books-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th># <span @click="toggleSort('index')" class="sort-arrow">[[ arrow('index') ]]</span></th>
-          <th @click="toggleSort('name')" class="sortable">title <span class="sort-arrow">[[ arrow('name') ]]</span></th>
-          <th @click="toggleSort('author')" class="sortable">author <span class="sort-arrow">[[ arrow('author') ]]</span></th>
-          <th @click="toggleSort('isbn13')" class="sortable">isbn 13 <span class="sort-arrow">[[ arrow('isbn13') ]]</span></th>
-          <th @click="toggleSort('quantity')" class="sortable">quantity <span class="sort-arrow">[[ arrow('quantity') ]]</span></th>
-          <th @click="toggleSort('status')" class="sortable">status <span class="sort-arrow">[[ arrow('status') ]]</span></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(b, idx) in filteredBooks" :key="b._id">
-          <td><span class="status-dot active"></span></td>
-          <td>[[ idx + 1 ]]</td>
-          <td>[[ b.name ]]</td>
-          <td>[[ b.author ]]</td>
-          <td>[[ b.isbn13 ]]</td>
-          <td>[[ b.quantity ]]</td>
-          <td>active</td>
-          <td><button @click="deleteBook(b)"><i class='bx bx-trash'></i></button></td>
-        </tr>
-      </tbody>
-    </table>
+    <!-- BOOKS TABLE (wrapped in the “card”) -->
+    <div class="table-container">
+      <table class="books-table">
+        <thead>
+          <tr>
+            <!-- drop the “#” column entirely -->
+            <th @click="toggleSort('name')" class="sortable">
+              title <span class="sort-arrow">[[ arrow('name') ]]</span>
+            </th>
+            <th @click="toggleSort('author')" class="sortable">
+              author <span class="sort-arrow">[[ arrow('author') ]]</span>
+            </th>
+            <th @click="toggleSort('isbn13')" class="sortable">
+              isbn <span class="sort-arrow">[[ arrow('isbn13') ]]</span>
+            </th>
+            <th @click="toggleSort('quantity')" class="sortable">
+              quantity <span class="sort-arrow">[[ arrow('quantity') ]]</span>
+            </th>
+            <th @click="toggleSort('status')" class="sortable">
+              status <span class="sort-arrow">[[ arrow('status') ]]</span>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(b, idx) in filteredBooks" :key="b._id">
+            <!-- remove the first <td> for idx+1 -->
+            <td>[[ b.name ]]</td>
+            <td>[[ b.author ]]</td>
+            <td>[[ b.isbn13 ]]</td>
+            <td>[[ b.quantity ]]</td>
+            <td>active</td>
+            <td>
+              <button @click="deleteBook(b)">
+                <i class='bx bx-trash'></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>

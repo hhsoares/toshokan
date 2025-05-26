@@ -11,10 +11,10 @@
 </head>
 <body>
   <div id="app">
+    <!-- HEADER -->
     <header>
       <a href="/librarian-dashboard" class="logo">toshokan 図書館</a>
 
-      <!-- middle, flex:2 -->
       <div class="search-wrapper">
         <input
           type="text"
@@ -27,75 +27,93 @@
         </button>
       </div>
 
-      <!-- right, flex:1, right-aligned -->
       <div v-if="user" class="user-info">
         welcome <strong>[[ user.first_name ]]</strong>! |
         <a href="#" @click.prevent="logout">logout</a>
       </div>
     </header>
-    <!-- Navigation -->
+
+    <!-- SECONDARY NAV -->
     <nav class="secondary-nav">
       <a href="/librarian/users" class="active">users</a>
       <a href="/librarian/books">books</a>
       <a href="/librarian/requests">requests</a>
     </nav>
 
-    <!-- Users table -->
-    <table class="users-table">
-      <thead>
-        <tr>
-          <th></th>
-          <th># <span @click="toggleSort('index')" class="sort-arrow">[[ arrow('index') ]]</span></th>
-          <th @click="toggleSort('name')" class="sortable">
-            name <span class="sort-arrow">[[ arrow('name') ]]</span>
-          </th>
-          <th @click="toggleSort('email')" class="sortable">
-            e-mail <span class="sort-arrow">[[ arrow('email') ]]</span>
-          </th>
-          <th @click="toggleSort('status')" class="sortable">
-            status <span class="sort-arrow">[[ arrow('status') ]]</span>
-          </th>
-          <th>active books</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(u, idx) in filteredUsers" :key="u._id">
-          <td><span :class="['status-dot', u.status]"></span></td>
-          <td>[[ idx + 1 ]]</td>
-          <td>[[ u.first_name ]] [[ u.last_name ]]</td>
-          <td>[[ u.email ]]</td>
-          <td>[[ u.status ]]</td>
-          <td>
-            <div v-if="u.active_books.length">
-              <div v-for="b in u.active_books" style="margin-bottom: 4px;">
-                [[ b.name ]] (due: [[ b.due ]])<br/>
-                <button @click="extendBook(u._id, b.name)" title="Extend">📅</button>
-                <button @click="removeBook(u._id, b.name)" title="Remove">❌</button>
+    <!-- USERS TABLE -->
+    <div class="table-container">
+      <table class="users-table">
+        <thead>
+          <tr>
+            <!-- ⚡ first <th> removed ⚡ -->
+            <th @click="toggleSort('name')" class="sortable">
+              name <span class="sort-arrow">[[ arrow('name') ]]</span>
+            </th>
+            <th @click="toggleSort('email')" class="sortable">
+              e-mail <span class="sort-arrow">[[ arrow('email') ]]</span>
+            </th>
+            <th>role</th>
+            <th @click="toggleSort('status')" class="sortable">
+              status <span class="sort-arrow">[[ arrow('status') ]]</span>
+            </th>
+            <th>active books</th>
+            <th></th> <!-- actions -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="u in filteredUsers" :key="u._id">
+            <!-- ⚡ first <td> removed ⚡ -->
+            <td>[[ u.first_name ]] [[ u.last_name ]]</td>
+            <td>[[ u.email ]]</td>
+            <td>[[ u.is_librarian ? 'librarian' : 'user' ]]</td>
+            <td>[[ u.status ]]</td>
+            <td>
+              <div v-if="u.active_books.length">
+                <div
+                  v-for="b in u.active_books"
+                  :key="b.name"
+                  class="book-line"
+                >
+                  [[ b.name ]] (due: [[ b.due ]])
+                  <button
+                    @click="extendBook(u._id, b.name)"
+                    title="Extend"
+                    class="inline-btn"
+                  >📅</button>
+                  <button
+                    @click="removeBook(u._id, b.name)"
+                    title="Remove"
+                    class="inline-btn"
+                  >❌</button>
+                </div>
               </div>
-            </div>
-            <div v-else>--</div>
-          </td>
-          <td>
-            <button v-if="u.status === 'suspended'" @click="unsuspendUser(u._id)">
-              <i class='bx bx-refresh'></i>
-            </button>
-            <button v-else @click="deleteUser(u)">
-              <i class='bx bx-no-entry'></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              <div v-else>--</div>
+            </td>
+            <td>
+              <button
+                v-if="u.status==='suspended'"
+                @click="unsuspendUser(u._id)"
+              ><i class="bx bx-refresh"></i></button>
+              <button
+                v-else
+                @click="deleteUser(u)"
+              ><i class="bx bx-no-entry"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <!-- Suspend Modal -->
+    <!-- SUSPEND MODAL -->
     <div class="modal" v-if="showSuspendModal">
-      <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-content" style="max-width:400px;">
         <span class="close-btn" @click="closeSuspendModal">&times;</span>
-        <h3 style="text-align: center; margin-bottom: 20px;">
+        <h3 style="text-align:center; margin-bottom:20px;">
           Suspend [[ selectedUser.first_name ]] [[ selectedUser.last_name ]]
         </h3>
-        <button class="reserve-btn" @click="suspendUser">Confirm Suspension</button>
+        <button class="reserve-btn" @click="suspendUser">
+          Confirm Suspension
+        </button>
       </div>
     </div>
   </div>

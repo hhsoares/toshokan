@@ -1,34 +1,86 @@
-/* === HEADER & NAVIGATION === */
+/* === HEADER & NAVIGATION (imported from libDashboard.css) === */
+/* …keep your existing header/nav rules here… */
+a.logo {
+  flex: 1;
+  color: #231F12;
+  text-decoration: none;
+}
+a.logo:hover { text-decoration: none; }
+/* === TABLE CONTAINER === */
+.table-container {
+  margin: 40px 40px 40px;            /* space under the nav */
+  background: #fff;                  /* white “card” background */
+  overflow: hidden;                  /* clip corners */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* === BOOKS TABLE === */
+.books-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;                   /* bumped +2px for readability */
+  color: #231F12;
+  min-width: 700px;                  /* prevent squishing too much */
+}
+
+/* zebra striping */
+.books-table tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.books-table th,
+.books-table td {
+  border: 1px solid #333;
+  padding: 8px 12px;
+  text-align: center;               /* center all cells */
+  vertical-align: middle;
+}
+
+.books-table thead th {
+  position: sticky;                  /* keep headers visible */
+  top: 0;
+  background: #fff;
+  z-index: 2;
+}
+
+/* sortable headers */
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+.sort-arrow {
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+
+/* === SEARCH & ADD-BOOK BUTTON (keep from your books.css) === */
 .search-wrapper {
   position: relative;
   flex: 2;
   max-width: 400px;
 }
-
 .search-wrapper input {
   width: 100%;
   padding: 8px 12px;
-  padding-right: 40px;      /* make room for the icon */
+  padding-right: 40px;
   border: 1px solid #ccc;
-  border-radius: 999px;      /* fully rounded */
+  border-radius: 999px;
   font-size: 14px;
   background: #fff;
   outline: none;
 }
-
 .search-wrapper button {
   position: absolute;
   top: 50%;
-  right: 12px;               /* inside the pill */
+  right: 12px;
   transform: translateY(-50%);
   border: none;
   background: none;
-  padding: 0;
-  cursor: pointer;
   font-size: 16px;
   color: #231F12;
+  cursor: pointer;
 }
-/* Navigation under header */
+
 .secondary-nav {
   background-color: #FFE5BA;
   display: flex;
@@ -37,7 +89,6 @@
   padding: 10px 40px;
   font-size: 14px;
 }
-
 .secondary-nav .nav-links {
   display: flex;
   gap: 32px;
@@ -46,59 +97,11 @@
   color: #231F12;
   text-decoration: none;
   font-weight: bold;
+  font-size: 20px;
 }
-
-.secondary-nav a.active {
-  text-decoration: underline;
-}
-
+.secondary-nav a.active,
 .secondary-nav a:hover {
   text-decoration: underline;
-}
-
-/* === TABLE STYLING === */
-
-.books-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0 40px 40px;
-  font-size: 14px;
-  color: #231F12;
-}
-
-.books-table th,
-.books-table td {
-  border: 1px solid #333;
-  padding: 10px;
-  text-align: left;
-  vertical-align: top;
-}
-
-.books-table th {
-  background: white;
-  font-weight: bold;
-}
-
-.sortable {
-  cursor: pointer;
-  user-select: none;
-}
-
-.sort-arrow {
-  font-size: 0.8em;
-  margin-left: 4px;
-}
-
-/* Status dot (all active for now) */
-.status-dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.status-dot.active {
-  background: #D5BC90;
 }
 
 .add-book-btn {
@@ -108,42 +111,38 @@
   text-decoration: underline;
   cursor: pointer;
   color: #231F12;
-  font-size: 14px;
+  font-size: 20px;
 }
 
+/* === MODAL === */
+/* …keep your modal rules here from libBooks.css… */
 .modal {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(4px);
+  position: fixed; top:0; left:0;
+  width:100vw; height:100vh;
   background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(2px);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
-
 .modal-content {
-  background: white;
+  background: #fff;
   padding: 30px;
   border-radius: 16px;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   position: relative;
   box-shadow: 0 0 30px rgba(0,0,0,0.2);
 }
-
 .modal-content h2 {
   margin-top: 0;
 }
-
 .modal-content label {
   font-weight: bold;
   margin-top: 10px;
   display: block;
 }
-
 .modal-content input {
   width: 100%;
   padding: 6px;
@@ -151,7 +150,6 @@
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-
 .modal-content button[type="submit"] {
   margin-top: 20px;
   width: 100%;
@@ -163,36 +161,17 @@
   border-radius: 12px;
   cursor: pointer;
 }
-
 .close-btn {
   position: absolute;
-  right: 12px;
   top: 8px;
+  right: 12px;
   font-size: 24px;
   cursor: pointer;
   color: #999;
 }
-
 .close-btn:hover {
   color: #000;
 }
-/* — override header inherited weight — */
-header .user-info {
-  font-weight: normal;
-}
-header .user-info a {
-  font-weight: normal;
-  text-decoration: underline;   /* logout stays underlined */
-}
-header .user-info strong {
-  font-weight: 700;             /* only the name is bold */
-}
-/* Keep the logo link the same color as header text and remove underline */
-a.logo {
-  color: #231F12;       /* same dark header text */
-  text-decoration: none;
-}
 
-a.logo:hover,
-a.logo:focus {
-  text-decoration: none;  /* no underline on hover/focus either */
+/* === HEADER .user-info OVERRIDES === */
+/* …keep your existing overrides from libDashboard.css… */
