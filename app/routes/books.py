@@ -171,3 +171,22 @@ def delete_book(book_id):
         return {"error": "Book not found or already deleted"}, 404
 
     return {"message": "Book deleted successfully"}, 200
+
+@books_bp.route("/<book_id>", methods=["PUT"])
+def edit_book(book_id):
+    db = current_app.mongo.db
+    data = request.get_json()
+    update_fields = {
+        "name": data.get("name", ""),
+        "author": data.get("author", ""),
+        "isbn13": data.get("isbn13", ""),
+        "image": data.get("image", ""),
+        "quantity": int(data.get("quantity", 1)),
+    }
+    result = db.books.update_one(
+        {"_id": ObjectId(book_id)},
+        {"$set": update_fields}
+    )
+    if result.matched_count:
+        return {"message": "Book updated"}, 200
+    return {"error": "Book not found"}, 404

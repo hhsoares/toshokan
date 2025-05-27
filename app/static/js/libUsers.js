@@ -11,6 +11,15 @@ createApp({
       sortAsc: true,
       showSuspendModal: false,
       selectedUser: null,
+      // Edit modal data
+      showEditModal: false,
+      editUser: {
+        _id: "",
+        first_name: "",
+        last_name: "",
+        email: "",
+        is_librarian: false
+      },
     };
   },
   computed: {
@@ -108,7 +117,41 @@ createApp({
     },
     deleteUser(u) {
       this.openSuspendModal(u);
-    }
+    },
+    // -------- EDIT USER MODAL -------
+    openEditModal(user) {
+      this.editUser = {
+        _id: user._id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        is_librarian: !!user.is_librarian
+      };
+      this.showEditModal = true;
+    },
+    closeEditModal() {
+      this.showEditModal = false;
+    },
+    async submitEditUser() {
+      // PATCH to /users/<id>
+      const payload = {
+        first_name: this.editUser.first_name,
+        last_name: this.editUser.last_name,
+        email: this.editUser.email,
+        is_librarian: this.editUser.is_librarian
+      };
+      const res = await fetch(`/users/${this.editUser._id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        this.closeEditModal();
+        this.loadUsers();
+      } else {
+        alert("Failed to update user.");
+      }
+    },
   },
   mounted() {
     if (!this.user) return (window.location.href = "/");

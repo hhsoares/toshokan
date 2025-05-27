@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome – Toshokan 図書館</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 1) Base CSS for header/footer (same as login.html) -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/homePageBase.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/startPageStyle.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+  <!-- 2) Start-page overrides -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/startPageStyle.css') }}">
+</head>
+<body>
+
+  <!-- HEADER (exactly as in login.html) -->
+  <header>
+    <a href="/" class="logo">toshokan 図書館</a>
+    <a href="/login" class="return">login or register</a>
+  </header>
+
+  <!-- BACKGROUND IMAGE -->
+  <div class="image-wrapper">
+    <img src="{{ url_for('static', filename='img/startPageImage-Photoroom.png') }}"
+         alt="Woman reading a book">
+  </div>
+
+  <!-- MAIN CONTENT (own wrapper so we don't stomp login.css) -->
+  <div id="app" class="start-container">
+    <div class="introducing">
+      <h1>more than just<br>books.</h1>
+      <p>toshokan is your space to<br>read, study, and grow.</p>
+      <p>books, manga, research databases – all at your fingertips.</p>
+      <button class="btn" @click="goToAbout">about us</button>
+    </div>
+  </div>
+
+  <!-- FOOTER (exactly as in login.html) -->
+  <footer>
+    <p class="version">Toshokan – 2025</p>
+    <p class="authors">Feito por Guilherme Pereira e Hugo Soares</p>
+  </footer>
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script>
+    Vue.createApp({
+      methods: {
+        goToAbout() { window.location.href = "/about"; }
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>

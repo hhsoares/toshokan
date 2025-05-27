@@ -10,7 +10,16 @@ createApp({
       sortKey: "index",
       sortAsc: true,
       showModal: false,
+      showEditModal: false,   // EDIT MODAL
       newBook: {
+        name: "",
+        author: "",
+        isbn13: "",
+        image: "",
+        quantity: 1
+      },
+      editBook: {
+        _id: "",
         name: "",
         author: "",
         isbn13: "",
@@ -93,6 +102,39 @@ createApp({
         this.loadBooks();
       })
       .catch(err => alert("Error: " + err.message));
+    },
+    // ==== EDIT LOGIC BELOW ====
+    openEditModal(book) {
+      this.editBook = { ...book };  // Clone for editing
+      this.showEditModal = true;
+    },
+    closeEditModal() {
+      this.showEditModal = false;
+      this.editBook = { _id: "", name: "", author: "", isbn13: "", image: "", quantity: 1 };
+    },
+    async submitEditBook() {
+      // Call backend to update
+      const payload = {
+        name: this.editBook.name,
+        author: this.editBook.author,
+        isbn13: this.editBook.isbn13,
+        image: this.editBook.image,
+        quantity: Number(this.editBook.quantity)
+      };
+      const res = await fetch(`/books/${this.editBook._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        this.showEditModal = false;
+        this.loadBooks();
+      } else {
+        alert("Failed to update book.");
+      }
+    },
+    openBulkEdit() {
+      alert("This button is for future: bulk editing, not single-book edit. Single row edit is in the table.");
     }
   },
   mounted() {

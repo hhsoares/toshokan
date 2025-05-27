@@ -1,0 +1,103 @@
+/* static/css/startPageStyle.css */
+
+/* 1) (Optional) Re-import the font if you ever need it here */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+
+/* 2) Wrapper that vertically centers the intro text */
+.start-container {
+  flex: 1;                         /* fill between header & footer */
+  display: flex;
+  justify-content: flex-start;     /* left-align the intro block */
+  align-items: center;             /* vertical centering */
+  position: relative;
+  z-index: 1;                      /* above background image */
+  padding: 0 160px;                /* space from left & right edges */
+}
+
+/* 3) The “more than just books” block */
+.introducing {
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                        /* a little tighter spacing */
+  text-align: left;                /* left-align all text */
+  align-items: flex-start;         /* children hug left edge */
+  color: #231F12;
+}
+
+/* Headline styling */
+.introducing h1 {
+  font-size: 2.2rem;               /* ~35px, matches login header scale */
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;                       /* we control spacing via gap */
+}
+
+/* Body paragraphs */
+.introducing p {
+  font-size: 1.1rem;               /* ~18px, matches login copy */
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 4) “about us” button: flush left, text perfectly centered */
+.introducing .btn {
+  display: inline-flex;            /* shrink-to-fit content */
+  align-items: center;             /* vertical centering */
+  justify-content: center;         /* horizontal centering */
+  white-space: nowrap;             /* never wrap the label */
+  margin: 0;                       /* flush under the copy */
+  padding: 8px 26px;               /* comfortable hit-area */
+  background: #231F12;
+  border: none;
+  border-radius: 12px;
+  color: #FFE5BA;
+  font-size: 1.75rem;              /* same as login button */
+  font-weight: 600;
+  line-height: 1;                  /* no extra line spacing */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.introducing .btn:hover {
+  transform: scale(1.08);
+}
+
+/* 5) Full-screen, behind-the-content image */
+.image-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 900px;
+  height: 100vh;
+  z-index: 0;                      /* behind everything else */
+  pointer-events: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: right top;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* 6) Responsive tweaks */
+@media (max-width: 950px) {
+  .start-container {
+    padding: 0 24px;
+    justify-content: center;       /* center on small screens */
+  }
+  .image-wrapper {
+    width: 100vw;
+    height: auto;
+    max-height: 70vh;
+  }
+  .image-wrapper img {
+    width: 100vw;
+    height: auto;
+    max-height: 70vh;
+  }
+}

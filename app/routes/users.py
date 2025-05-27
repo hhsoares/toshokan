@@ -131,3 +131,16 @@ def unsuspend_user(user_id):
         {"$set": {"suspended": False}, "$unset": {"suspension_until": ""}}
     )
     return {"message": "User unsuspended"}, 200
+
+@users_bp.route("/<user_id>", methods=["PATCH"])
+def update_user(user_id):
+    db = current_app.mongo.db
+    data = request.get_json()
+    update = {}
+    for field in ["first_name", "last_name", "email", "is_librarian"]:
+        if field in data:
+            update[field] = data[field]
+    if not update:
+        return {"error": "No data to update"}, 400
+    db.users.update_one({"_id": ObjectId(user_id)}, {"$set": update})
+    return {"message": "User updated"}, 200

@@ -45,7 +45,6 @@
       <table class="users-table">
         <thead>
           <tr>
-            <!-- ⚡ first <th> removed ⚡ -->
             <th @click="toggleSort('name')" class="sortable">
               name <span class="sort-arrow">[[ arrow('name') ]]</span>
             </th>
@@ -62,7 +61,6 @@
         </thead>
         <tbody>
           <tr v-for="u in filteredUsers" :key="u._id">
-            <!-- ⚡ first <td> removed ⚡ -->
             <td>[[ u.first_name ]] [[ u.last_name ]]</td>
             <td>[[ u.email ]]</td>
             <td>[[ u.is_librarian ? 'librarian' : 'user' ]]</td>
@@ -90,13 +88,20 @@
               <div v-else>--</div>
             </td>
             <td>
+              <!-- EDIT BUTTON -->
+              <button @click="openEditModal(u)" title="Edit user">
+                <i class="bx bx-edit"></i>
+              </button>
+              <!-- SUSPEND/UNSUSPEND -->
               <button
                 v-if="u.status==='suspended'"
                 @click="unsuspendUser(u._id)"
+                title="Unsuspend"
               ><i class="bx bx-refresh"></i></button>
               <button
                 v-else
                 @click="deleteUser(u)"
+                title="Suspend"
               ><i class="bx bx-no-entry"></i></button>
             </td>
           </tr>
@@ -114,6 +119,32 @@
         <button class="reserve-btn" @click="suspendUser">
           Confirm Suspension
         </button>
+      </div>
+    </div>
+
+    <!-- EDIT USER MODAL -->
+    <div class="modal" v-if="showEditModal">
+      <div class="modal-content">
+        <span class="close-btn" @click="closeEditModal">&times;</span>
+        <h2>Edit User</h2>
+        <form @submit.prevent="submitEditUser">
+          <label>First Name:</label>
+          <input type="text" v-model="editUser.first_name" required>
+
+          <label>Last Name:</label>
+          <input type="text" v-model="editUser.last_name" required>
+
+          <label>E-mail:</label>
+          <input type="email" v-model="editUser.email" required>
+
+          <label>Role:</label>
+          <select v-model="editUser.is_librarian">
+            <option :value="false">user</option>
+            <option :value="true">librarian</option>
+          </select>
+
+          <button type="submit">Save</button>
+        </form>
       </div>
     </div>
   </div>
