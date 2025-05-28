@@ -53,10 +53,15 @@ Windows
 ```sh
 pip install -r requirements.txt
 ```
+
+### Configurar o MongoDB:
+
+
+
 ### Criar um arquivo .env com suas configurações:
 ```
-SECRET_KEY=sua_chave_secreta
-MONGO_URI=sua_uri_do_mongodb_atlas
+MONGO_URI="mongodb+srv://<seu_username>:<sua_senha>@librarydb.4lcbqsk.mongodb.net/LibraryDb?retryWrites=true&w=majority&appName=LibraryDb"
+FLASK_SECRET_KEY=1234
 ```
 ### Iniciar o servidor:
 ```sh
@@ -65,6 +70,10 @@ python run.py
 ### Acessar o sistema:
 
 Em um navegador de internet, acessar o endereço http://127.0.0.1:5000
+
+O programa automaticamente criará um usuário:
+- e-mail: admin@admin.com
+- senha: 123
 
 ## Dupla:
 
