@@ -56,13 +56,20 @@ pip install -r requirements.txt
 
 ### Configurar o MongoDB:
 
+#### No Atlas:
 
+- Criar uma nova organização (tanto faz o nome)
+- Criar um novo projeto (tanto faz o nome)
+- Criar um novo cluster (tanto faz o nome)
+- Pegar o endereço da URI par inserir no Compass
 
 ### Criar um arquivo .env com suas configurações:
 ```
-MONGO_URI="mongodb+srv://<seu_username>:<sua_senha>@librarydb.4lcbqsk.mongodb.net/LibraryDb?retryWrites=true&w=majority&appName=LibraryDb"
+MONGO_URI="mongodb+srv://<seu_username>:<sua_senha>@<seu_cluster>/LibraryDb?retryWrites=true&w=majority&appName=LibraryDb"
 FLASK_SECRET_KEY=1234
 ```
+Para pegar a URI corretamente, no Mongo Atlas, pegue a conexão para Python (irá conter seu usuário, sua senha e o seu cluster) e altere a parte final (após o .net) para /LibraryDb?retryWrites=true&w=majority&appName=LibraryDb
+
 ### Iniciar o servidor:
 ```sh
 python run.py
