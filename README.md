@@ -38,11 +38,16 @@ cd toshokan
 ```
 
 ### Criar o ambiente virtual:
-   
 ```sh
 python -m venv venv
-source venv/bin/activate (Linux/macOS)
-venv\Scripts\activate (Windows)
+```
+Linux/macOS
+```sh
+source venv/bin/activate
+```
+Windows
+```sh
+.venv\Scripts\activate
 ```
 ### Instalar as dependências:
 ```sh
